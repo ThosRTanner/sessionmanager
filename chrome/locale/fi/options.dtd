@@ -1,0 +1,202 @@
+<!ENTITY options.title "&sessionManager; -asetukset">
+<!ENTITY general.caption "Yleiset">
+<!ENTITY startNend.caption "Selaimen käynnistys &amp; sulkeminen">
+<!ENTITY resume_sess.label "Avaa käynnistyksen yhteydessä aina seuraava istunto:">
+<!ENTITY resume_sess.accesskey "S">
+<!ENTITY backup_sess.label "Suljettaessa">
+<!ENTITY backup_sess.accesskey "H">
+<!ENTITY backup_session.label0 "hylkää nykyinen istunto">
+<!ENTITY backup_session.label1 "ota varmuuskopio nykyisestä istunnosta">
+<!ENTITY backup_session.label2 "kysy otetaanko nykyisestä istunnosta varmuuskopio">
+<!ENTITY crashrecovery.label "Ota käyttöön kaatumisesta palautuminen">
+<!ENTITY crashrecovery.accesskey "E">
+<!ENTITY autosave_session.label "Tallenna korvattu istunto automaattisesti">
+<!ENTITY autosave_session.accesskey "A">
+<!ENTITY restoring.caption "Istunnon palautus">
+<!ENTITY sessionList.caption "Istuntolista">
+<!ENTITY orderList.label "Järjestä istuntolista">
+<!ENTITY orderList.accesskey "D">
+<!ENTITY orderList.label1 "aakkosjärjestykseen">
+<!ENTITY orderList.label2 "vanhimmasta uusimpaan">
+<!ENTITY orderList.label_2 "uusimmasta vanhimpaan">
+<!ENTITY max_backup.label "Varmuuskopioina säilytettävien vanhojen (kaatuneiden) istuntojen lukumäärä:">
+<!ENTITY max_backup.accesskey "N">
+<!ENTITY undoClose.caption "Sulkemisen peruuttaminen">
+<!ENTITY windowsNtabs.caption "Suljetut ikkunat &amp; välilehdet">
+<!ENTITY max_closed.label "Muistettavien suljettujen ikkunoiden lukumäärä:">
+<!ENTITY max_closed.accesskey "W">
+<!ENTITY max_tabs.label "Muistettavien suljettujen välilehtien lukumäärä (per ikkuna):">
+<!ENTITY max_tabs.accesskey "T">
+<!ENTITY submenu.label "Listaa suljetut ikkunat ja välilehdet alavalikossa">
+<!ENTITY submenu.accesskey "C">
+<!ENTITY persistence.caption "Jatkuvuus">
+<!ENTITY closed_tabs.label "Palauta uudelleenavattavissaolevien suljettujen välilehtien lista kaikille ikkunoille:">
+<!ENTITY closed_tabs.accesskey "E">
+<!ENTITY closed_tabs.label0 "ei koskaan">
+<!ENTITY closed_tabs.label1 "käynnistyksen yhteydessä">
+<!ENTITY closed_tabs.label2 "aina">
+<!ENTITY window_list.label "Älä tyhjennä suljettujen ikkunoiden listaa selainta suljettaessa">
+<!ENTITY window_list.accesskey "O">
+<!ENTITY clear_list.label "Tyhjennä lista">
+<!ENTITY clear_list.accesskey "R">
+<!ENTITY advanced.caption "Lisäasetukset">
+<!ENTITY name_format.caption "Istuntojen nimet">
+<!ENTITY name_format.label "Istuntojen nimeämisehdotuksen muoto:">
+<!ENTITY name_format.accesskey "F">
+<!ENTITY name_format.desc "&#37;t = aktiivisen välilehden otsikko, &#37;d = päivämäärä ja &#37;m = kellonaika; lisäksi otsikon voi rajoittaa tietyn mittaiseksi antamalla sen muodossa &#37;#t, jossa # on haluttu pituus.">
+<!ENTITY sessionstore.caption "Istuntosäilö">
+<!ENTITY service.caption "Istuntosäilön asetukset">
+<!ENTITY service.description "Älä koske näihin ellet tiedä mitä teet!">
+<!ENTITY interval.label "Tilatallennusten välinen vähimmäisaika (sekunteina):">
+<!ENTITY interval.accesskey "I">
+<!ENTITY postdata.label "Talletettavan POSTDATA:n enimmäismäärä (tavuina, -1 = tallenna kaikki)">
+<!ENTITY postdata.accesskey "X">
+<!ENTITY privacy.label "Tallenna arkaluontoiset tiedot (lomaketiedot, POSTDATA ja evästeet):">
+<!ENTITY privacy.accesskey "V">
+<!ENTITY privacy.level0 "kaikille sivustoille">
+<!ENTITY privacy.level1 "vain suojaamattomille sivustoille">
+<!ENTITY privacy.level2 "älä tallenna koskaan">
+<!ENTITY sessiondir.caption "Tallennettujen istuntojen sijainti">
+<!ENTITY sessiondir.desc "Tallennettujen istuntojen oletusarvoinen sijainti voidaan muuttaa tästä.">
+<!ENTITY encrypt.caption "Salaus">
+<!ENTITY encrypt.desc "Varoitus: Salatut istuntotiedot voidaan avata vain niissä käyttäjäprofiileissa joissa on samat key3.db- ja cert8.db-tiedostot. Lisäksi jos pääsalasana on asetettu, istuntotietoja ei voida salata eikä purkaa jos pääsalasanaa ei syötetä.">
+<!ENTITY encrypt.label "Salaa tallennettujen istuntojen ja suljettujen ikkunoiden tiedot">
+<!ENTITY encrypt.accesskey "E">
+<!ENTITY change_dir.label "Muuta sijaintia">
+<!ENTITY change_dir.accesskey "C">
+<!ENTITY default_dir.label "Palauta alkuperäinen sijainti">
+<!ENTITY default_dir.accesskey "D">
+<!ENTITY sanitizer.label "Tallennetut Session Manager -istunnot">
+<!ENTITY sanitizer.accesskey "M">
+<!ENTITY saving.caption "Istunnon tallennus">
+<!ENTITY lastpage.label "Näytä viimeisin lataamani sivu">
+<!ENTITY noSession.label "Ei mitään">
+<!ENTITY noSession.accesskey "N">
+<!ENTITY promptSession.label "Kysy istunto">
+<!ENTITY promptSession.accesskey "P">
+<!ENTITY selectSession.label "Valitse istunto">
+<!ENTITY selectSession.accesskey "S">
+<!ENTITY cookies.label "Tallenna istunnon evästeet">
+<!ENTITY cookies.accesskey "C">
+<!ENTITY sessionImport.caption "Tuo istunnot...">
+<!ENTITY importSS.label "Session Saver">
+<!ENTITY importSS.accesskey "I">
+<!ENTITY importTMP.label "Tab Mix Plus">
+<!ENTITY importTMP.accesskey "I">
+<!ENTITY apply.label "Käytä">
+<!ENTITY save_and_restore.caption "Tallennus &amp; palautus">
+<!ENTITY display.caption "Näyttö">
+<!ENTITY middleclick.label "Keskinapautus avaa viimeksi suljetun välilehden">
+<!ENTITY middleclick.accesskey "M">
+<!ENTITY max_display.label "Valikossa näytettävien istuntojen enimmäismäärä">
+<!ENTITY max_display.accesskey "M">
+<!ENTITY hide_tools_menu.label "Älä näytä Session Manageria työkalut-valikossa">
+<!ENTITY hide_tools_menu.accesskey "D">
+<!ENTITY disable_cache_fixer.label "Poista välimuistin korjaustoiminto käytöstä">
+<!ENTITY disable_cache_fixer.accesskey "D">
+<!ENTITY encrypted_only.label "Jos salaus epäonnistuu, ÄLÄ tallenna tietoja salaamattomina.">
+<!ENTITY encrypted_only.accesskey "N">
+<!ENTITY encrypt2.desc "Varoitus: Jos tämä asetus on valittuna eikä istunnon tai ikkunan tietoja voida salata, tiedot katoavat ilman palautusmahdollisuutta. Salaus epäonnistuu jos pääsalasanaa ei anneta sitä pyydettäessä, joten mieti tarkkaan ennen kuin valitset tämän asetuksen.">
+<!ENTITY closed_window_list.label "Käytä selaimen sisäänrakennettua suljettujen ikkunoiden luetteloa">
+<!ENTITY closed_window_list.accesskey "U">
+<!ENTITY closed_windows.label "Palauta uudelleenavattavissaolevien suljettujen ikkunoiden lista:">
+<!ENTITY closed_windows.accesskey "s">
+<!ENTITY open_as_tabs.label "Avaa välilehtiin nykyisessä ikkunassa">
+<!ENTITY open_as_tabs.accesskey "p">
+<!ENTITY last_window_shutdown.label "Sammuta kun viimeinen avoin ikkuna suljetaan.">
+<!ENTITY last_window_shutdown.accesskey "T">
+<!ENTITY preselect_previous_session.label "Esivalitse edellinen istunto">
+<!ENTITY preselect_previous_session.accesskey "R">
+<!ENTITY logging.caption "Loki">
+<!ENTITY enable_logging.label "Ota lokikirjaaminen käyttöön">
+<!ENTITY enable_logging.accesskey "e">
+<!ENTITY open_log.label "Avaa lokitiedosto">
+<!ENTITY open_log.accesskey "o">
+<!ENTITY delete_log.label "Poista lokitiedosto">
+<!ENTITY delete_log.accesskey "d">
+<!ENTITY log_level_state.label "Kirjaa sammuttamisen tila">
+<!ENTITY log_level_state.accesskey "s">
+<!ENTITY log_level_trace.label "Kirjaa &quot;Trace Data&quot;">
+<!ENTITY log_level_trace.accesskey "t">
+<!ENTITY log_level_data.label "Kirjaa &quot;Variable Data&quot;">
+<!ENTITY log_level_data.accesskey "v">
+<!ENTITY log_level_info.label "Kirjaa &quot;Informational Messages&quot;">
+<!ENTITY log_level_info.accesskey "i">
+<!ENTITY log_level_extra.label "Kirjaa &quot;Extra Debugging Data&quot;">
+<!ENTITY log_level_extra.accesskey "e">
+<!ENTITY reload.label "Lataa uudelleen kaikki palautetut ikkunat">
+<!ENTITY reload.accesskey "L">
+<!ENTITY overwrite.label "Korvaa olemassaolevat ikkunat">
+<!ENTITY overwrite.accesskey "P">
+<!ENTITY allow_saving_during_pbm.label "Salli tallennus yksityinen selaus -tilan aikana">
+<!ENTITY allow_saving_during_pbm.label2 "Vaatii salauksen käyttöönottamisen">
+<!ENTITY allow_saving_during_pbm.accesskey "S">
+<!ENTITY session_name_in_titlebar.label "aktiivisen istunnon nimi">
+<!ENTITY session_name_in_titlebar.accesskey "n">
+<!ENTITY prepend.label "Liitä otsikkopalkin alkuun">
+<!ENTITY append.label "Liitä otsikkopalkin loppuun">
+<!ENTITY donotadd.label "Piilota otsikkopalkista">
+<!ENTITY use_browser_crash_prompt.label "Käytä selaimen sisäänrakennettua kaatumisen jälkeistä palautumiskyselyä">
+<!ENTITY use_browser_crash_prompt.accesskey "U">
+<!ENTITY reset_warnings.label "Palauta varoituskyselyt">
+<!ENTITY reset_warnings.accesskey "R">
+<!ENTITY export_settings.label "Vie asetukset">
+<!ENTITY export_settings.accesskey "X">
+<!ENTITY import_settings.label "Tuo asetukset">
+<!ENTITY import_settings.accesskey "I">
+<!ENTITY settingsImportExport.caption "Vie/tuo asetukset">
+<!ENTITY keyboard.caption "Pikanäppäimet">
+<!ENTITY keyboard.desc "Käyttääksesi pikanäppäintä syötä se tähän tai muutoin jätä tyhjäksi. Muutokset eivät vaikuta nykyisiin ikkunoihin.">
+<!ENTITY clear.label "Tyhjennä">
+<!ENTITY clear.accesskey "C">
+<!ENTITY clear_tab_list.label "Tyhjennä suljetut välilehdet">
+<!ENTITY clear_tab_list.accesskey "a">
+<!ENTITY clear_window_list.label "Tyhjennä suljetut ikkunat">
+<!ENTITY clear_window_list.accesskey "i">
+<!ENTITY backup_on_restart.label "Tallenna varmuuskopio selaimen uudelleenkäynnistyksessä">
+<!ENTITY backup_on_restart.accesskey "b">
+<!ENTITY keep_deleted_sessions.label "Poistettujen istuntojen säilytysaika päivissä:">
+<!ENTITY keep_deleted_sessions.accesskey "d">
+<!ENTITY concurrent.label "Samanaikaisesti palautettavien välilehtien lukumäärä">
+<!ENTITY concurrent.accesskey "T">
+<!ENTITY do_not_color_toolbar_button.label "Do not color toolbar button when sessions loaded">
+<!ENTITY do_not_color_toolbar_button.accesskey "D">
+<!ENTITY preserve_app_tabs.label "Do not replace pinned App tabs">
+<!ENTITY preserve_app_tabs.accesskey "D">
+<!ENTITY logging_to_console.label "Also log to error console">
+<!ENTITY logging_to_console.accesskey "A">
+<!ENTITY update_message.label "Show update web page after updating">
+<!ENTITY update_message.accesskey "S">
+<!ENTITY double_click_session.label "Double clicking an existing session overwrites the session and">
+<!ENTITY double_click_session.accesskey "D">
+<!ENTITY replace_with_name_replace.label "replaces the existing session name with the one in the text box">
+<!ENTITY replace_with_name_keep.label "keeps the existing session name">
+<!ENTITY show_icon_in_menu.label "Show icon in tools menu">
+<!ENTITY show_icon_in_menu.accesskey "I">
+<!ENTITY set_encryption_password.label "Enter a password to protect your session encryption key">
+<!ENTITY set_encryption_password.accesskey "E">
+<!ENTITY change_encryption_key_password.label "Change encryption key password">
+<!ENTITY change_encryption_key_password.accesskey "C">
+<!ENTITY save_encryption_key.label "Save encryption key password in browser password manager">
+<!ENTITY save_encryption_key.accesskey "S">
+<!ENTITY restore_hidden_tabs.label "Restore hidden tabs">
+<!ENTITY restore_hidden_tabs.accesskey "H">
+<!ENTITY display_menus_in_submenu.label "Display Session Manager menu items in submenu">
+<!ENTITY display_menus_in_submenu.accesskey "D">
+<!ENTITY use_sql_cache.label "Cache basic session data on disk. Enables searching inside sessions">
+<!ENTITY use_sql_cache.accesskey "C">
+<!ENTITY rebuild_cache.label "Rebuild cache data">
+<!ENTITY rebuild_cache.accesskey "R">
+<!ENTITY log_level_error.label "Log Errors">
+<!ENTITY log_level_error.accesskey "e">
+<!ENTITY allow_duplicates.label "Allow saving a session with same name as an existing session">
+<!ENTITY allow_duplicates.accesskey "A">
+<!ENTITY backup_every.label "Create a new backup session every">
+<!ENTITY backup_every.accesskey "C">
+<!ENTITY minutes "minutes">
+<!ENTITY restore_on_demand.label "Restore tabs on demand">
+<!ENTITY restore_on_demand.accesskey "R">
+<!ENTITY max_back_history.label "Number of back button history entries per tab to save (-1 for all)">
+<!ENTITY max_back_history.accesskey "b">
+<!ENTITY max_forward_history.label "Number of forward button history entries per tab to save (-1 for all)">
+<!ENTITY max_forward_history.accesskey "f">

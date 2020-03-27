@@ -1,0 +1,202 @@
+<!ENTITY options.title "Opcions del &sessionManager;">
+<!ENTITY general.caption "General">
+<!ENTITY startNend.caption "Inici i sortida">
+<!ENTITY resume_sess.label "En iniciar, carrega sempre la sessió següent:">
+<!ENTITY resume_sess.accesskey "s">
+<!ENTITY backup_sess.label "En sortir">
+<!ENTITY backup_sess.accesskey "h">
+<!ENTITY backup_session.label0 "descarta la sessió actual">
+<!ENTITY backup_session.label1 "fes una còpia de seguretat de la sessió actual">
+<!ENTITY backup_session.label2 "demana'm si s'ha de fer una còpia de seguretat de la sessió actual">
+<!ENTITY crashrecovery.label "Habilita la recuperació de fallades">
+<!ENTITY crashrecovery.accesskey "e">
+<!ENTITY autosave_session.label "Desa automàticament la sessió reemplaçada">
+<!ENTITY autosave_session.accesskey "a">
+<!ENTITY restoring.caption "Restauració de la sessió">
+<!ENTITY sessionList.caption "Llista de sessions">
+<!ENTITY orderList.label "Ordena la llista de sessions">
+<!ENTITY orderList.accesskey "r">
+<!ENTITY orderList.label1 "alfabèticament">
+<!ENTITY orderList.label2 "de més antiga a més nova">
+<!ENTITY orderList.label_2 "de més nova a més antiga">
+<!ENTITY max_backup.label "Nombre de còpies de seguretat antigues (fallades) a mantenir:">
+<!ENTITY max_backup.accesskey "N">
+<!ENTITY undoClose.caption "Desfés el tancament">
+<!ENTITY windowsNtabs.caption "Finestres i pestanyes tancades">
+<!ENTITY max_closed.label "Nombre màxim de finestres tancades a recordar:">
+<!ENTITY max_closed.accesskey "w">
+<!ENTITY max_tabs.label "Nombre màxim de pestanyes tancades a recordar (per finestra):">
+<!ENTITY max_tabs.accesskey "t">
+<!ENTITY submenu.label "Mostra una llista de totes les finestres i pestanyes en un submenú">
+<!ENTITY submenu.accesskey "c">
+<!ENTITY persistence.caption "Persistència">
+<!ENTITY closed_tabs.label "Restaura la llista de pestanyes tancades que es puguin tornar a obrir per a totes les finestres:">
+<!ENTITY closed_tabs.accesskey "e">
+<!ENTITY closed_tabs.label0 "mai">
+<!ENTITY closed_tabs.label1 "en iniciar">
+<!ENTITY closed_tabs.label2 "sempre">
+<!ENTITY window_list.label "No netegis la llista de finestres tancades en sortir">
+<!ENTITY window_list.accesskey "o">
+<!ENTITY clear_list.label "Neteja la llista">
+<!ENTITY clear_list.accesskey "r">
+<!ENTITY advanced.caption "Avançat">
+<!ENTITY name_format.caption "Noms de les sessions">
+<!ENTITY name_format.label "Format per als suggeriments dels noms de les sessions:">
+<!ENTITY name_format.accesskey "F">
+<!ENTITY name_format.desc "Use &#37;t for the active tab's title, &#37;d for today's date and &#37;m for the time; additionally the title's length can be limited to # characters: &#37;#t.">
+<!ENTITY sessionstore.caption "SessionStore">
+<!ENTITY service.caption "Paràmetres del «SessionStore»">
+<!ENTITY service.description "No ho modifiqueu a menys que sapigueu què esteu fent">
+<!ENTITY interval.label "Interval mínim entre dos desaments d'estat (en segons)">
+<!ENTITY interval.accesskey "i">
+<!ENTITY postdata.label "Maximum amount of POSTDATA to be stored (in bytes; -1 for all):">
+<!ENTITY postdata.accesskey "x">
+<!ENTITY privacy.label "Save sensitive data (form data, POSTDATA and cookies) for">
+<!ENTITY privacy.accesskey "v">
+<!ENTITY privacy.level0 "tots els llocs">
+<!ENTITY privacy.level1 "només els llocs no encriptats">
+<!ENTITY privacy.level2 "cap lloc">
+<!ENTITY sessiondir.caption "Ubicació de les sessions desades">
+<!ENTITY sessiondir.desc "La ubicació predeterminada de les sessions desades es pot sobreescriure aquí.">
+<!ENTITY encrypt.caption "Encriptació">
+<!ENTITY encrypt.desc "Warning: Encrypted session data can only be opened in profiles with identical key3.db files.  Additionally if a master password is set, sessions cannot be encrypted or decrypted if the master password is not entered.">
+<!ENTITY encrypt.label "Encripta les dades de la sessió desada i les finestres tancades">
+<!ENTITY encrypt.accesskey "e">
+<!ENTITY change_dir.label "Canvia">
+<!ENTITY change_dir.accesskey "C">
+<!ENTITY default_dir.label "Predeterminat">
+<!ENTITY default_dir.accesskey "D">
+<!ENTITY sanitizer.label "Sessions desades del gestor de sessions">
+<!ENTITY sanitizer.accesskey "M">
+<!ENTITY saving.caption "Desament de sessions">
+<!ENTITY lastpage.label "Mostra la darrera pàgina que he carregat">
+<!ENTITY noSession.label "Cap">
+<!ENTITY noSession.accesskey "N">
+<!ENTITY promptSession.label "Demana per carregar una sessió">
+<!ENTITY promptSession.accesskey "P">
+<!ENTITY selectSession.label "Seleccioneu la sessió">
+<!ENTITY selectSession.accesskey "S">
+<!ENTITY cookies.label "Desa les galetes de la sessió">
+<!ENTITY cookies.accesskey "C">
+<!ENTITY sessionImport.caption "Importa sessions de...">
+<!ENTITY importSS.label "SessionSaver">
+<!ENTITY importSS.accesskey "e">
+<!ENTITY importTMP.label "Tab Mix Plus">
+<!ENTITY importTMP.accesskey "I">
+<!ENTITY apply.label "Aplica">
+<!ENTITY save_and_restore.caption "Desament i restauració">
+<!ENTITY display.caption "Mostra">
+<!ENTITY middleclick.label "En fer clic amb el botó del mig s'obrirà la darrera pestanya tancada">
+<!ENTITY middleclick.accesskey "M">
+<!ENTITY max_display.label "Nombre màxim de sessions a mostrar en el menú (-1 significa totes)">
+<!ENTITY max_display.accesskey "M">
+<!ENTITY hide_tools_menu.label "No mostris el menú del gestor de sessions al menú Eines">
+<!ENTITY hide_tools_menu.accesskey "D">
+<!ENTITY disable_cache_fixer.label "Inhabilita la funció de reparació de la memòria cau">
+<!ENTITY disable_cache_fixer.accesskey "D">
+<!ENTITY encrypted_only.label "Si falla l'encriptació, NO desis les dades sense encriptar.">
+<!ENTITY encrypted_only.accesskey "N">
+<!ENTITY encrypt2.desc "Warning: If this is checked and the session or window data cannot be encrypted, the data will be lost with no way to recover it.  Encryption will fail if the master password is requested and not entered, so think carefully before checking this box.">
+<!ENTITY closed_window_list.label "Utilitza la llista interna de finestres tancades del navegador">
+<!ENTITY closed_window_list.accesskey "U">
+<!ENTITY closed_windows.label "Restaura la llista de finestres tancades que es puguin tornar a obrir:">
+<!ENTITY closed_windows.accesskey "s">
+<!ENTITY open_as_tabs.label "Obre com a pestanyes a la finestra actual">
+<!ENTITY open_as_tabs.accesskey "p">
+<!ENTITY last_window_shutdown.label "Treat closing last open browser window as shutting down">
+<!ENTITY last_window_shutdown.accesskey "T">
+<!ENTITY preselect_previous_session.label "Pre-selecciona la sessió anterior">
+<!ENTITY preselect_previous_session.accesskey "R">
+<!ENTITY logging.caption "Registre">
+<!ENTITY enable_logging.label "Habilita el registre">
+<!ENTITY enable_logging.accesskey "e">
+<!ENTITY open_log.label "Obre el fitxer de registre">
+<!ENTITY open_log.accesskey "o">
+<!ENTITY delete_log.label "Suprimeix el fitxer de registre">
+<!ENTITY delete_log.accesskey "d">
+<!ENTITY log_level_state.label "Registra l'estat de sortida">
+<!ENTITY log_level_state.accesskey "s">
+<!ENTITY log_level_trace.label "Registra les dades de traça">
+<!ENTITY log_level_trace.accesskey "t">
+<!ENTITY log_level_data.label "Registra les dades de les variables">
+<!ENTITY log_level_data.accesskey "v">
+<!ENTITY log_level_info.label "Resgistra els missatges informatius">
+<!ENTITY log_level_info.accesskey "i">
+<!ENTITY log_level_extra.label "Registra la informació addicional de depuració">
+<!ENTITY log_level_extra.accesskey "e">
+<!ENTITY reload.label "Torna a carregar totes les finestres recuperades">
+<!ENTITY reload.accesskey "B">
+<!ENTITY overwrite.label "Reemplaça les finestres existents">
+<!ENTITY overwrite.accesskey "R">
+<!ENTITY allow_saving_during_pbm.label "Permet desar en el mode de navegació privada">
+<!ENTITY allow_saving_during_pbm.label2 "Cal habilitar l'encriptatge">
+<!ENTITY allow_saving_during_pbm.accesskey "S">
+<!ENTITY session_name_in_titlebar.label "el nom de les sessions actives a la barra de títol">
+<!ENTITY session_name_in_titlebar.accesskey "n">
+<!ENTITY prepend.label "Afegeix a l'inici">
+<!ENTITY append.label "Afegeix">
+<!ENTITY donotadd.label "No l'afegeixis">
+<!ENTITY use_browser_crash_prompt.label "Use browser's built in crash recovery prompt">
+<!ENTITY use_browser_crash_prompt.accesskey "U">
+<!ENTITY reset_warnings.label "Reset warning prompts">
+<!ENTITY reset_warnings.accesskey "R">
+<!ENTITY export_settings.label "Export settings">
+<!ENTITY export_settings.accesskey "X">
+<!ENTITY import_settings.label "Import settings">
+<!ENTITY import_settings.accesskey "I">
+<!ENTITY settingsImportExport.caption "Import/Export Settings">
+<!ENTITY keyboard.caption "Keyboard Shortcuts">
+<!ENTITY keyboard.desc "To use a keyboard shortcut for an action enter it here, otherwise leave it blank.  Changes here will not apply to existing windows.">
+<!ENTITY clear.label "Clear">
+<!ENTITY clear.accesskey "C">
+<!ENTITY clear_tab_list.label "Clear Closed Tabs">
+<!ENTITY clear_tab_list.accesskey "a">
+<!ENTITY clear_window_list.label "Clear Closed Windows">
+<!ENTITY clear_window_list.accesskey "i">
+<!ENTITY backup_on_restart.label "Save backup on browser restart">
+<!ENTITY backup_on_restart.accesskey "b">
+<!ENTITY keep_deleted_sessions.label "Number of days to temporarily keep deleted sessions:">
+<!ENTITY keep_deleted_sessions.accesskey "d">
+<!ENTITY concurrent.label "Number of tabs to restore concurrently">
+<!ENTITY concurrent.accesskey "T">
+<!ENTITY do_not_color_toolbar_button.label "Do not color toolbar button when sessions loaded">
+<!ENTITY do_not_color_toolbar_button.accesskey "D">
+<!ENTITY preserve_app_tabs.label "Do not replace pinned App tabs">
+<!ENTITY preserve_app_tabs.accesskey "D">
+<!ENTITY logging_to_console.label "Also log to error console">
+<!ENTITY logging_to_console.accesskey "A">
+<!ENTITY update_message.label "Show update web page after updating">
+<!ENTITY update_message.accesskey "S">
+<!ENTITY double_click_session.label "Double clicking an existing session overwrites the session and">
+<!ENTITY double_click_session.accesskey "D">
+<!ENTITY replace_with_name_replace.label "replaces the existing session name with the one in the text box">
+<!ENTITY replace_with_name_keep.label "keeps the existing session name">
+<!ENTITY show_icon_in_menu.label "Show icon in tools menu">
+<!ENTITY show_icon_in_menu.accesskey "I">
+<!ENTITY set_encryption_password.label "Enter a password to protect your session encryption key">
+<!ENTITY set_encryption_password.accesskey "E">
+<!ENTITY change_encryption_key_password.label "Change encryption key password">
+<!ENTITY change_encryption_key_password.accesskey "C">
+<!ENTITY save_encryption_key.label "Save encryption key password in browser password manager">
+<!ENTITY save_encryption_key.accesskey "S">
+<!ENTITY restore_hidden_tabs.label "Restore hidden tabs">
+<!ENTITY restore_hidden_tabs.accesskey "H">
+<!ENTITY display_menus_in_submenu.label "Display Session Manager menu items in submenu">
+<!ENTITY display_menus_in_submenu.accesskey "D">
+<!ENTITY use_sql_cache.label "Cache basic session data on disk. Enables searching inside sessions">
+<!ENTITY use_sql_cache.accesskey "C">
+<!ENTITY rebuild_cache.label "Rebuild cache data">
+<!ENTITY rebuild_cache.accesskey "R">
+<!ENTITY log_level_error.label "Log Errors">
+<!ENTITY log_level_error.accesskey "e">
+<!ENTITY allow_duplicates.label "Allow saving a session with same name as an existing session">
+<!ENTITY allow_duplicates.accesskey "A">
+<!ENTITY backup_every.label "Create a new backup session every">
+<!ENTITY backup_every.accesskey "C">
+<!ENTITY minutes "minutes">
+<!ENTITY restore_on_demand.label "Restore tabs on demand">
+<!ENTITY restore_on_demand.accesskey "R">
+<!ENTITY max_back_history.label "Number of back button history entries per tab to save (-1 for all)">
+<!ENTITY max_back_history.accesskey "b">
+<!ENTITY max_forward_history.label "Number of forward button history entries per tab to save (-1 for all)">
+<!ENTITY max_forward_history.accesskey "f">

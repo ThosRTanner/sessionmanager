@@ -1,0 +1,106 @@
+<!ENTITY sessionManager "Gestor de sessions">
+<!ENTITY toolsmenu.accesskey "M">
+<!ENTITY save.label "Desa la sessió...">
+<!ENTITY save.accesskey "S">
+<!ENTITY saveOne.label "Desa la finestra actual...">
+<!ENTITY saveOne.accesskey "W">
+<!ENTITY closeSession.label "Desa i tanca la sessió actual">
+<!ENTITY closeSession.accesskey "C">
+<!ENTITY abandonSession.label "Abandona la sessió actual">
+<!ENTITY abandonSession.accesskey "A">
+<!ENTITY rename.label "Canvia el nom de la sessió...">
+<!ENTITY rename.accesskey "R">
+<!ENTITY remove.label "Suprimeix sessions...">
+<!ENTITY remove.accesskey "D">
+<!ENTITY openFolder.label "Obre la carpeta de la sessió">
+<!ENTITY openFolder.accesskey "F">
+<!ENTITY options.label "Opcions del &sessionManager;">
+<!ENTITY options.accesskey "O">
+<!ENTITY undoClosed.label "Torna a obrir el que s'hagi tancat...">
+<!ENTITY undoClosed.accesskey "C">
+<!ENTITY closedWindows "Finestres tancades:">
+<!ENTITY closedTabs "Pestanyes tancades:">
+<!ENTITY clearList.label "Neteja la llista d'elements tancats...">
+<!ENTITY clearList.accesskey "C">
+<!ENTITY toolbar.tooltip "Desa la sessió de navegació actual...">
+<!ENTITY toolbar.undo.label "Desfés el tancament">
+<!ENTITY toolbar.undo.tooltip "Torna a obrir la pestanya tancada més recent">
+<!ENTITY prompt.ignore.label "No tornis a mostrar aquest diàleg">
+<!ENTITY prompt.autosave.label "Fes d'aquesta una sessió de desament automàtic">
+<!ENTITY prompt.tabprompt.label "Demana'm si vull restaurar les pestanyes">
+<!ENTITY load_replace.label "Carrega (reemplaça la sessió actual)">
+<!ENTITY load_replace.accesskey "L">
+<!ENTITY load_append.label "Carrega (afegeix a la sessió actual)">
+<!ENTITY load_append.accesskey "A">
+<!ENTITY replace_all.label "Reemplaça la sessió per la sessió actual">
+<!ENTITY replace_all.accesskey "R">
+<!ENTITY replace_window.label "Reemplaça la sessió per la finestra actual">
+<!ENTITY replace_window.accesskey "W">
+<!ENTITY remove_one.label "Suprimeix una sessió...">
+<!ENTITY set_startup.label "Estableix com a sessió d'inici">
+<!ENTITY set_startup.accesskey "S">
+<!ENTITY openSessionManagerSidebar.commandkey "S">
+<!ENTITY session_name.label "Nom">
+<!ENTITY session_windows.label "Finestres">
+<!ENTITY session_tabs.label "Pestanyes">
+<!ENTITY backup_sessions.label "Còpia de seguretat de les sessions">
+<!ENTITY backup_sessions.accesskey "B">
+<!ENTITY remove_item.label "Suprimeix l'element">
+<!ENTITY remove_item.accesskey "D">
+<!ENTITY session_group.label "Grup">
+<!ENTITY rename_group.label "Canvia el nom d'un grup...">
+<!ENTITY remove_group.label "Suprimeix un grup...">
+<!ENTITY change_group.label "Canvia un grup...">
+<!ENTITY change_group.accesskey "C">
+<!ENTITY group.label "Group Session(s)...">
+<!ENTITY group.accesskey "G">
+<!ENTITY toolbar.menu.tooltip "Open session management menu">
+<!ENTITY toolbar.undo.menu.tooltip "Open recently closed windows and tabs menu">
+<!ENTITY prompt.save_every1.label "Desa cada">
+<!ENTITY prompt.save_every2.label "minuts (no habilitat si es deixa en blanc)">
+<!ENTITY winTabTree.restoreHeader "Restaura">
+<!ENTITY winTabTree.listHeader "Finestres i pestanyes">
+<!-- LOCALIZATION NOTE: &#37;S will be replaced with a number. -->
+<!ENTITY winTabTree.windowLabel "Window &#37;S">
+<!ENTITY load.label "Carrega una sessió...">
+<!ENTITY load.accesskey "L">
+<!ENTITY prompt.append.label "Afegeix a la sessió">
+<!ENTITY prompt.replace.label "Reemplaça la sessió">
+<!ENTITY tab_open_click_note.label "Note: clicking a tab entry while holding down the ALT key, will open that tab in the existing window.">
+<!ENTITY select_all.label "Selecciona-ho tot">
+<!ENTITY select_none.label "No seleccionis res">
+<!ENTITY toggle_selection.label "Commuta la selecció">
+<!ENTITY winTabTree.urlHeader "Ubicació">
+<!ENTITY prompt.append_window.label "Afegeix a la finestra actual">
+<!ENTITY session_explorer.label "Explorador de sessions">
+<!ENTITY session_explorer.accesskey "E">
+<!ENTITY closeWindowSession.label "Save and Close Window Session">
+<!ENTITY closeWindowSession.accesskey "l">
+<!ENTITY abandonWindowSession.label "Abandon Window Session">
+<!ENTITY abandonWindowSession.accesskey "b">
+<!ENTITY load_append_window.label "Load (Append To Current Window)">
+<!ENTITY load_append_window.accesskey "i">
+<!ENTITY leave_window_open.label "Leave this window open">
+<!ENTITY clearTabList.label "Clear 'Closed' Tab List...">
+<!ENTITY clearTabList.accesskey "T">
+<!ENTITY clearWindowList.label "Clear 'Closed' Window List...">
+<!ENTITY clearWindowList.accesskey "W">
+<!ENTITY hidden.label "Hidden">
+<!ENTITY contribute.label "Contribute">
+<!ENTITY support.label "Support this add-on:">
+<!ENTITY session_group_verb.label "Group">
+<!ENTITY deleted_sessions.label "Deleted Sessions">
+<!ENTITY deleted_sessions.accesskey "e">
+<!ENTITY empty_trash.label "Remove all deleted sessions">
+<!ENTITY empty_trash.accesskey "R">
+<!ENTITY permanently_delete.label "Permanently delete session">
+<!ENTITY permanently_delete.accesskey "P">
+<!ENTITY search.label "Search...">
+<!ENTITY edit.label "Edit Session...">
+<!ENTITY edit.accesskey "E">
+<!ENTITY addtab.label "Add tab to session...">
+<!ENTITY addtab.accesskey "A">
+<!ENTITY viewcontents.label "View contents of session">
+<!ENTITY viewcontents.accesskey "V">
+<!ENTITY export_to_html.label "Export contents of session to bookmark HTML file">
+<!ENTITY export_to_html.accesskey "E">

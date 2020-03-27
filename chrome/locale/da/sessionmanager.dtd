@@ -1,0 +1,106 @@
+<!ENTITY sessionManager "Session Manager">
+<!ENTITY toolsmenu.accesskey "M">
+<!ENTITY save.label "Gem session...">
+<!ENTITY save.accesskey "s">
+<!ENTITY saveOne.label "Gem vindue...">
+<!ENTITY saveOne.accesskey "v">
+<!ENTITY closeSession.label "Gem og luk session">
+<!ENTITY closeSession.accesskey "G">
+<!ENTITY abandonSession.label "Forlad nuværende session">
+<!ENTITY abandonSession.accesskey "F">
+<!ENTITY rename.label "Omdøb session...">
+<!ENTITY rename.accesskey "O">
+<!ENTITY remove.label "Slet session(er)...">
+<!ENTITY remove.accesskey "t">
+<!ENTITY openFolder.label "Åbn sessionsmappe">
+<!ENTITY openFolder.accesskey "b">
+<!ENTITY options.label "&sessionManager; indstillinger">
+<!ENTITY options.accesskey "i">
+<!ENTITY undoClosed.label "Genåbn lukkede...">
+<!ENTITY undoClosed.accesskey "l">
+<!ENTITY closedWindows "Lukkede vinduer:">
+<!ENTITY closedTabs "Lukkede faneblade:">
+<!ENTITY clearList.label "Slet &apos;Lukket&apos; liste...">
+<!ENTITY clearList.accesskey "S">
+<!ENTITY toolbar.tooltip "Gem nuværende session...">
+<!ENTITY toolbar.undo.label "Fortryd lukning">
+<!ENTITY toolbar.undo.tooltip "Genåbn de senest lukkede faneblade">
+<!ENTITY prompt.ignore.label "Vis ikke denne besked igen">
+<!ENTITY prompt.autosave.label "Gør til auto-gem session">
+<!ENTITY prompt.tabprompt.label "Spørg om genetablering af faneblade">
+<!ENTITY load_replace.label "Indlæs (Erstat nuværende session)">
+<!ENTITY load_replace.accesskey "l">
+<!ENTITY load_append.label "Indlæs (Tilføj til nuværende session)">
+<!ENTITY load_append.accesskey "n">
+<!ENTITY replace_all.label "Erstat session med nuværende session">
+<!ENTITY replace_all.accesskey "r">
+<!ENTITY replace_window.label "Erstat session med nuværende vindue">
+<!ENTITY replace_window.accesskey "v">
+<!ENTITY remove_one.label "Slet session...">
+<!ENTITY set_startup.label "Sæt som opstartssession">
+<!ENTITY set_startup.accesskey "s">
+<!ENTITY openSessionManagerSidebar.commandkey "S">
+<!ENTITY session_name.label "Navn">
+<!ENTITY session_windows.label "Vinduer">
+<!ENTITY session_tabs.label "Faneblade">
+<!ENTITY backup_sessions.label "Backup-sessioner">
+<!ENTITY backup_sessions.accesskey "B">
+<!ENTITY remove_item.label "Slet element">
+<!ENTITY remove_item.accesskey "e">
+<!ENTITY session_group.label "Gruppe">
+<!ENTITY rename_group.label "Omdøb gruppe...">
+<!ENTITY remove_group.label "Slet gruppe...">
+<!ENTITY change_group.label "Redigér gruppe...">
+<!ENTITY change_group.accesskey "R">
+<!ENTITY group.label "Gruppe-Session(er)...">
+<!ENTITY group.accesskey "G">
+<!ENTITY toolbar.menu.tooltip "Åbn sessionsadministrationsmenu">
+<!ENTITY toolbar.undo.menu.tooltip "Åbn nyligt lukkede vinduer og faneblade-menu">
+<!ENTITY prompt.save_every1.label "Gem hver">
+<!ENTITY prompt.save_every2.label "minutter (deaktiveret hvis tom)">
+<!ENTITY winTabTree.restoreHeader "Genetabler">
+<!ENTITY winTabTree.listHeader "Vinduer og Faneblade">
+<!-- LOCALIZATION NOTE: &#37;S will be replaced with a number. -->
+<!ENTITY winTabTree.windowLabel "Vindue &#37;S">
+<!ENTITY load.label "Indlæs session...">
+<!ENTITY load.accesskey "l">
+<!ENTITY prompt.append.label "Tilføj til session">
+<!ENTITY prompt.replace.label "Erstat session">
+<!ENTITY tab_open_click_note.label "Bemærk: klik på et fanebladselement med Alt-tasten nede vil åbne pågældende faneblad i det eksisterende vindue.">
+<!ENTITY select_all.label "Vælg alle">
+<!ENTITY select_none.label "Vælg ingen">
+<!ENTITY toggle_selection.label "Inverter valg">
+<!ENTITY winTabTree.urlHeader "Placering">
+<!ENTITY prompt.append_window.label "Tilføj til nuværende vindue">
+<!ENTITY session_explorer.label "Sessions-stifinder">
+<!ENTITY session_explorer.accesskey "e">
+<!ENTITY closeWindowSession.label "Gem og luk vindue-session">
+<!ENTITY closeWindowSession.accesskey "l">
+<!ENTITY abandonWindowSession.label "Opgiv vindue-session">
+<!ENTITY abandonWindowSession.accesskey "O">
+<!ENTITY load_append_window.label "Indlæs (tilføj til nuværende vindue)">
+<!ENTITY load_append_window.accesskey "I">
+<!ENTITY leave_window_open.label "Leave this window open">
+<!ENTITY clearTabList.label "Clear 'Closed' Tab List...">
+<!ENTITY clearTabList.accesskey "T">
+<!ENTITY clearWindowList.label "Clear 'Closed' Window List...">
+<!ENTITY clearWindowList.accesskey "W">
+<!ENTITY hidden.label "Hidden">
+<!ENTITY contribute.label "Contribute">
+<!ENTITY support.label "Support this add-on:">
+<!ENTITY session_group_verb.label "Group">
+<!ENTITY deleted_sessions.label "Deleted Sessions">
+<!ENTITY deleted_sessions.accesskey "e">
+<!ENTITY empty_trash.label "Remove all deleted sessions">
+<!ENTITY empty_trash.accesskey "R">
+<!ENTITY permanently_delete.label "Permanently delete session">
+<!ENTITY permanently_delete.accesskey "P">
+<!ENTITY search.label "Search...">
+<!ENTITY edit.label "Edit Session...">
+<!ENTITY edit.accesskey "E">
+<!ENTITY addtab.label "Add tab to session...">
+<!ENTITY addtab.accesskey "A">
+<!ENTITY viewcontents.label "View contents of session">
+<!ENTITY viewcontents.accesskey "V">
+<!ENTITY export_to_html.label "Export contents of session to bookmark HTML file">
+<!ENTITY export_to_html.accesskey "E">

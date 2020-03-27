@@ -1,0 +1,202 @@
+<!ENTITY options.title "&sessionManager; Nustatymai">
+<!ENTITY general.caption "Bendra">
+<!ENTITY startNend.caption "Paleistis ir uždarymas">
+<!ENTITY resume_sess.label "Paleidžiant visada įkelti šią sesiją:">
+<!ENTITY resume_sess.accesskey "v">
+<!ENTITY backup_sess.label "Uždarant">
+<!ENTITY backup_sess.accesskey "u">
+<!ENTITY backup_session.label0 "nesaugoti šios sesijos">
+<!ENTITY backup_session.label1 "saugoti šią sesiją">
+<!ENTITY backup_session.label2 "klausti, ar saugoti šią sesiją">
+<!ENTITY crashrecovery.label "Įjungti Nulūžimo atstatymą">
+<!ENTITY crashrecovery.accesskey "a">
+<!ENTITY autosave_session.label "Automatiškai išsaugoti pakeistą sesiją">
+<!ENTITY autosave_session.accesskey "p">
+<!ENTITY restoring.caption "Sesijų atkūrimas">
+<!ENTITY sessionList.caption "Sesijų sąrašas">
+<!ENTITY orderList.label "Rikiuoti sesijų sąrašą">
+<!ENTITY orderList.accesskey "i">
+<!ENTITY orderList.label1 "abėcėlės tvarka">
+<!ENTITY orderList.label2 "nuo seniausios iki naujausios">
+<!ENTITY orderList.label_2 "nuo naujausios iki seniausios">
+<!ENTITY max_backup.label "Senesnių (nulūžusių) sesijų skaičius, kurį saugoti:">
+<!ENTITY max_backup.accesskey "S">
+<!ENTITY undoClose.caption "Atšaukti užvėrimą">
+<!ENTITY windowsNtabs.caption "Užverti langai ir skirtukai">
+<!ENTITY max_closed.label "Didžiausias atsimenamų užvertų Langų skaičius:">
+<!ENTITY max_closed.accesskey "L">
+<!ENTITY max_tabs.label "Maksimalus atsimenamų užvertų Skirtukų skaičius (kiekviename lange):">
+<!ENTITY max_tabs.accesskey "a">
+<!ENTITY submenu.label "Rodyti užvertų langų ir skirtukų sąrašą submeniu">
+<!ENTITY submenu.accesskey "R">
+<!ENTITY persistence.caption "Kiekvienąkart">
+<!ENTITY closed_tabs.label "Atkurti iš naujo atveriamų užvertų skirtukų sąrašą visiems langams:">
+<!ENTITY closed_tabs.accesskey "t">
+<!ENTITY closed_tabs.label0 "niekada">
+<!ENTITY closed_tabs.label1 "paleidžiant">
+<!ENTITY closed_tabs.label2 "visada">
+<!ENTITY window_list.label "Nevalyti užvertų langų sąrašo išjungiant">
+<!ENTITY window_list.accesskey "n">
+<!ENTITY clear_list.label "Valyti sąrašą">
+<!ENTITY clear_list.accesskey "y">
+<!ENTITY advanced.caption "Išsamiau">
+<!ENTITY name_format.caption "Sesijų vardai">
+<!ENTITY name_format.label "Siūlomas sesijų vardų formatas:">
+<!ENTITY name_format.accesskey "f">
+<!ENTITY name_format.desc "Naudokite &#37;t aktyvaus skirtuko pavadinimui, &#37;d šiandienos datai ir &#37;m laikui; papildomai pavadinimo ilgis gali būti trumpinamas iki # simbolių: &#37;#t.">
+<!ENTITY sessionstore.caption "Sesijų Saugykla">
+<!ENTITY service.caption "&quot;Sesijų Saugyklos&quot; nustatymai">
+<!ENTITY service.description "Nekeiskite nieko, nebent žinote, ką darote:">
+<!ENTITY interval.label "Mažiausias laiko intervalas tarp būsenos išsaugojimų (sekundėmis):">
+<!ENTITY interval.accesskey "M">
+<!ENTITY postdata.label "Didžiausias POSTDATA kiekis išsaugojimui (baitais; -1 visiems):">
+<!ENTITY postdata.accesskey "P">
+<!ENTITY privacy.label "Saugoti svarbius duomenis (formų duomenis, POSTDATA ir slapukus)">
+<!ENTITY privacy.accesskey "g">
+<!ENTITY privacy.level0 "visoms svetainėms">
+<!ENTITY privacy.level1 "tik nešifruotoms svetainėms">
+<!ENTITY privacy.level2 "jokioms svetainėms">
+<!ENTITY sessiondir.caption "Saugomų sesijų vieta">
+<!ENTITY sessiondir.desc "Numatytoji saugomų sesijų vieta čia gali būti pakeista.">
+<!ENTITY encrypt.caption "Užkodavimas">
+<!ENTITY encrypt.desc "Įspėjimas: Užkoduoti sesijos duomenys gali būti atverti tik profiliuose su identiškais key3.db ir cert8.db failais. Taip pat, jei pagrindinis slaptažodis yra nustatytas, sesijos negali būti užkoduotos ar atkoduotos, jei pagrindinis slaptažodis neįvestas.">
+<!ENTITY encrypt.label "Užkoduotos išsaugotos sesijos ir užvertų langų duomenys">
+<!ENTITY encrypt.accesskey "k">
+<!ENTITY change_dir.label "Keisti">
+<!ENTITY change_dir.accesskey "K">
+<!ENTITY default_dir.label "Atstatyti numatytąją">
+<!ENTITY default_dir.accesskey "A">
+<!ENTITY sanitizer.label "Sesijų tvarkytojo išsaugotos sesijos">
+<!ENTITY sanitizer.accesskey "i">
+<!ENTITY saving.caption "Session Saving">
+<!ENTITY lastpage.label "Show my last loaded page">
+<!ENTITY noSession.label "None">
+<!ENTITY noSession.accesskey "N">
+<!ENTITY promptSession.label "Prompt for a session">
+<!ENTITY promptSession.accesskey "P">
+<!ENTITY selectSession.label "Select session">
+<!ENTITY selectSession.accesskey "S">
+<!ENTITY cookies.label "Save Session Cookies">
+<!ENTITY cookies.accesskey "C">
+<!ENTITY sessionImport.caption "Import Sessions from...">
+<!ENTITY importSS.label "SessionSaver">
+<!ENTITY importSS.accesskey "e">
+<!ENTITY importTMP.label "Tab Mix Plus">
+<!ENTITY importTMP.accesskey "I">
+<!ENTITY apply.label "Apply">
+<!ENTITY save_and_restore.caption "Saving &amp; Restoring">
+<!ENTITY display.caption "Display">
+<!ENTITY middleclick.label "Middle Click re-opens last closed tab">
+<!ENTITY middleclick.accesskey "M">
+<!ENTITY max_display.label "Maximum number of sessions to display in menu (-1 for all)">
+<!ENTITY max_display.accesskey "M">
+<!ENTITY hide_tools_menu.label "Do not display Session Manager menu in Tools menu">
+<!ENTITY hide_tools_menu.accesskey "D">
+<!ENTITY disable_cache_fixer.label "Disable cache fixer feature">
+<!ENTITY disable_cache_fixer.accesskey "D">
+<!ENTITY encrypted_only.label "If encryption fails, do NOT save data unencrypted.">
+<!ENTITY encrypted_only.accesskey "N">
+<!ENTITY encrypt2.desc "Warning: If this is checked and the session or window data cannot be encrypted, the data will be lost with no way to recover it.  Encryption will fail if the master password is requested and not entered, so think carefully before checking this box.">
+<!ENTITY closed_window_list.label "Use browser's built-in closed window list">
+<!ENTITY closed_window_list.accesskey "U">
+<!ENTITY closed_windows.label "Restore the list of reopenable closed windows:">
+<!ENTITY closed_windows.accesskey "s">
+<!ENTITY open_as_tabs.label "Open as tabs in current window">
+<!ENTITY open_as_tabs.accesskey "p">
+<!ENTITY last_window_shutdown.label "Treat closing last open browser window as shutting down">
+<!ENTITY last_window_shutdown.accesskey "T">
+<!ENTITY preselect_previous_session.label "Pre-select previous session">
+<!ENTITY preselect_previous_session.accesskey "R">
+<!ENTITY logging.caption "Logging">
+<!ENTITY enable_logging.label "Enable Logging">
+<!ENTITY enable_logging.accesskey "e">
+<!ENTITY open_log.label "Open Log File">
+<!ENTITY open_log.accesskey "o">
+<!ENTITY delete_log.label "Delete Log File">
+<!ENTITY delete_log.accesskey "d">
+<!ENTITY log_level_state.label "Log Shutdown State">
+<!ENTITY log_level_state.accesskey "s">
+<!ENTITY log_level_trace.label "Log Trace Data">
+<!ENTITY log_level_trace.accesskey "t">
+<!ENTITY log_level_data.label "Log Variable Data">
+<!ENTITY log_level_data.accesskey "v">
+<!ENTITY log_level_info.label "Log Informational Messages">
+<!ENTITY log_level_info.accesskey "i">
+<!ENTITY log_level_extra.label "Log Extra Debugging Data">
+<!ENTITY log_level_extra.accesskey "e">
+<!ENTITY reload.label "Perkrauti visus atkurtus langus">
+<!ENTITY reload.accesskey "e">
+<!ENTITY overwrite.label "Pakeisti egzistuojančius langus">
+<!ENTITY overwrite.accesskey "k">
+<!ENTITY allow_saving_during_pbm.label "Allow saving during Private Browsing Mode">
+<!ENTITY allow_saving_during_pbm.label2 "Requires encryption to be enabled">
+<!ENTITY allow_saving_during_pbm.accesskey "S">
+<!ENTITY session_name_in_titlebar.label "the name of active sessions to the title bar">
+<!ENTITY session_name_in_titlebar.accesskey "n">
+<!ENTITY prepend.label "Prepend">
+<!ENTITY append.label "Append">
+<!ENTITY donotadd.label "Do not add">
+<!ENTITY use_browser_crash_prompt.label "Use browser's built in crash recovery prompt">
+<!ENTITY use_browser_crash_prompt.accesskey "U">
+<!ENTITY reset_warnings.label "Reset warning prompts">
+<!ENTITY reset_warnings.accesskey "R">
+<!ENTITY export_settings.label "Export settings">
+<!ENTITY export_settings.accesskey "X">
+<!ENTITY import_settings.label "Import settings">
+<!ENTITY import_settings.accesskey "I">
+<!ENTITY settingsImportExport.caption "Import/Export Settings">
+<!ENTITY keyboard.caption "Keyboard Shortcuts">
+<!ENTITY keyboard.desc "To use a keyboard shortcut for an action enter it here, otherwise leave it blank.  Changes here will not apply to existing windows.">
+<!ENTITY clear.label "Clear">
+<!ENTITY clear.accesskey "C">
+<!ENTITY clear_tab_list.label "Clear Closed Tabs">
+<!ENTITY clear_tab_list.accesskey "a">
+<!ENTITY clear_window_list.label "Clear Closed Windows">
+<!ENTITY clear_window_list.accesskey "i">
+<!ENTITY backup_on_restart.label "Save backup on browser restart">
+<!ENTITY backup_on_restart.accesskey "b">
+<!ENTITY keep_deleted_sessions.label "Number of days to temporarily keep deleted sessions:">
+<!ENTITY keep_deleted_sessions.accesskey "d">
+<!ENTITY concurrent.label "Number of tabs to restore concurrently">
+<!ENTITY concurrent.accesskey "T">
+<!ENTITY do_not_color_toolbar_button.label "Do not color toolbar button when sessions loaded">
+<!ENTITY do_not_color_toolbar_button.accesskey "D">
+<!ENTITY preserve_app_tabs.label "Do not replace pinned App tabs">
+<!ENTITY preserve_app_tabs.accesskey "D">
+<!ENTITY logging_to_console.label "Also log to error console">
+<!ENTITY logging_to_console.accesskey "A">
+<!ENTITY update_message.label "Show update web page after updating">
+<!ENTITY update_message.accesskey "S">
+<!ENTITY double_click_session.label "Double clicking an existing session overwrites the session and">
+<!ENTITY double_click_session.accesskey "D">
+<!ENTITY replace_with_name_replace.label "replaces the existing session name with the one in the text box">
+<!ENTITY replace_with_name_keep.label "keeps the existing session name">
+<!ENTITY show_icon_in_menu.label "Show icon in tools menu">
+<!ENTITY show_icon_in_menu.accesskey "I">
+<!ENTITY set_encryption_password.label "Enter a password to protect your session encryption key">
+<!ENTITY set_encryption_password.accesskey "E">
+<!ENTITY change_encryption_key_password.label "Change encryption key password">
+<!ENTITY change_encryption_key_password.accesskey "C">
+<!ENTITY save_encryption_key.label "Save encryption key password in browser password manager">
+<!ENTITY save_encryption_key.accesskey "S">
+<!ENTITY restore_hidden_tabs.label "Restore hidden tabs">
+<!ENTITY restore_hidden_tabs.accesskey "H">
+<!ENTITY display_menus_in_submenu.label "Display Session Manager menu items in submenu">
+<!ENTITY display_menus_in_submenu.accesskey "D">
+<!ENTITY use_sql_cache.label "Cache basic session data on disk. Enables searching inside sessions">
+<!ENTITY use_sql_cache.accesskey "C">
+<!ENTITY rebuild_cache.label "Rebuild cache data">
+<!ENTITY rebuild_cache.accesskey "R">
+<!ENTITY log_level_error.label "Log Errors">
+<!ENTITY log_level_error.accesskey "e">
+<!ENTITY allow_duplicates.label "Allow saving a session with same name as an existing session">
+<!ENTITY allow_duplicates.accesskey "A">
+<!ENTITY backup_every.label "Create a new backup session every">
+<!ENTITY backup_every.accesskey "C">
+<!ENTITY minutes "minutes">
+<!ENTITY restore_on_demand.label "Restore tabs on demand">
+<!ENTITY restore_on_demand.accesskey "R">
+<!ENTITY max_back_history.label "Number of back button history entries per tab to save (-1 for all)">
+<!ENTITY max_back_history.accesskey "b">
+<!ENTITY max_forward_history.label "Number of forward button history entries per tab to save (-1 for all)">
+<!ENTITY max_forward_history.accesskey "f">
