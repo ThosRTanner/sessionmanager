@@ -23,6 +23,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "SessionConverter", "chrome://sessionman
 XPCOMUtils.defineLazyModuleGetter(this, "SessionDataProcessing", "chrome://sessionmanager/content/modules/session_data_processing.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "SessionIo", "chrome://sessionmanager/content/modules/session_file_io.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "SharedData", "chrome://sessionmanager/content/modules/shared_data/data.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "Watcher", "chrome://sessionmanager/content/modules/watcher.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "Utils", "chrome://sessionmanager/content/modules/utils.jsm");
 XPCOMUtils.defineLazyGetter(this, "SessionStore", function() { return Utils.SessionStore; }); 
 
@@ -697,7 +698,10 @@ exports.loadBrowserWindow = function(window, overlay) {
 			// DOMTitleChanged doesn't fire every time the title changes in the titlebar.
 			// Don't watch for private windows since they will never be autosave or window sessions
 			if (!Utils.isPrivateWindow(window))
-				window.gBrowser.ownerDocument.watch("title", this.updateTitlebar);
+			{
+			  Watcher.add_watcher(window.gBrowser.ownerDocument);
+			  window.gBrowser.ownerDocument.watch("title", this.updateTitlebar);
+			}
 			window.gBrowser.updateTitlebar();
 			
 			// Show the unhide the Session Manager titlebar label if user specifies
