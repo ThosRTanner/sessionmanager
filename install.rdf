@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?> 
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest">
     <em:id>{1280606b-2510-4fe0-97ef-9b5a22eafe30}</em:id>
@@ -6,7 +6,7 @@
     <em:type>2</em:type>
     <em:bootstrap>true</em:bootstrap>
     <em:multiprocessCompatible>true</em:multiprocessCompatible>
-		
+
     <!-- Firefox -->
     <em:targetApplication>
       <Description>
@@ -15,16 +15,25 @@
         <em:maxVersion>54.0</em:maxVersion>
       </Description>
     </em:targetApplication>
-    
+
+    <!-- Palemoon -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}</em:id>
+        <em:minVersion>28.8.4</em:minVersion>
+        <em:maxVersion>29.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
     <!-- SeaMonkey -->
-    <em:targetApplication> 
+    <em:targetApplication>
       <Description>
          <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
          <em:minVersion>2.33</em:minVersion>
          <em:maxVersion>2.50</em:maxVersion>
       </Description>
     </em:targetApplication>
-    
+
     <!-- Front End MetaData -->
     <em:name>Session Manager</em:name>
     <em:description>Saves and restores the state of all windows.</em:description>
@@ -33,12 +42,12 @@
     <em:contributor>dougeeebear (Session Manager icon)</em:contributor>
     <em:contributor>Icon Design at ReadyIcons.com (options icons)</em:contributor>
     <em:homepageURL>http://sessionmanager.mozdev.org/</em:homepageURL>
-    
+
     <!-- Front End Integration Hooks (used by Extension Manager)-->
     <em:optionsURL>chrome://sessionmanager/content/options/options.xul</em:optionsURL>
     <em:iconURL>chrome://sessionmanager/skin/icon.png</em:iconURL>
     <em:icon64URL>chrome://sessionmanager/skin/icon64.png</em:icon64URL>
-	
+
     <!-- Localizations -->
     <em:localized>
       <Description>
