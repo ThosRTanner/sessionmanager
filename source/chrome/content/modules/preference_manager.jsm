@@ -24,14 +24,12 @@ Cu.import("chrome://sessionmanager/content/modules/shared_data/addonInfo.jsm");
 
 // Constants
 const OLD_PREFERENCE_ROOT = "extensions.sessionmanager.";
-//const PREV_PREFERENCE_ROOT = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}";
+//const PREV_PREFERENCE_ROOT = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}.";
 //Ideally we'd use this, but it is a complete nightmare if you change the UUID
-//for some reason, and is hardcoded in a whole load of places.
+//as it is hardcoded in a whole load of places.
 //const PREFERENCE_ROOT = AddonInfo.prefBranch;
-const PREFERENCE_ROOT = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}";
-const FIRST_URL = "https://github.com/ThosRTanner/sessionmanager/blob/master/Changes.md";
-const FIRST_URL_DEV = "https://github.com/ThosRTanner/sessionmanager/blob/master/Changes.md";
-const DO_NOT_IMPORT_EXPORT = ["_autosave_values","_backup_autosave_values"];
+const PREFERENCE_ROOT = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}.";
+const DO_NOT_IMPORT_EXPORT = [ "_autosave_values", "_backup_autosave_values" ];
 
 // temporary variables for when doing import/export
 let currentVersion, importFileName, exportFileName;
