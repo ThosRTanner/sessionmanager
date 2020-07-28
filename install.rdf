@@ -35,8 +35,8 @@
     </em:targetApplication>
 
     <!-- Front End MetaData -->
-    <em:name>Session Manager</em:name>
-    <em:description>Saves and restores the state of all windows.</em:description>
+    <em:name>Session History</em:name>
+    <em:description>Helps manage your browser sessions</em:description>
     <em:creator>Tom Tanner</em:creator>
     <em:contributor>Michael Kraft (Previous Author)</em:contributor>
     <em:contributor>zeniko (Original Author)</em:contributor>
