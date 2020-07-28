@@ -24,10 +24,13 @@ Cu.import("chrome://sessionmanager/content/modules/shared_data/addonInfo.jsm");
 
 // Constants
 const OLD_PREFERENCE_ROOT = "extensions.sessionmanager.";
-const PREFERENCE_ROOT = AddonInfo.prefBranch;
-const SM_UUID = "{1280606b-2510-4fe0-97ef-9b5a22eafe30}";
-const FIRST_URL = "http://sessionmanager.mozdev.org/history.html";
-const FIRST_URL_DEV = "http://sessionmanager.mozdev.org/changelog.xhtml";
+//const PREV_PREFERENCE_ROOT = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}";
+//Ideally we'd use this, but it is a complete nightmare if you change the UUID
+//for some reason, and is hardcoded in a whole load of places.
+//const PREFERENCE_ROOT = AddonInfo.prefBranch;
+const PREFERENCE_ROOT = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}";
+const FIRST_URL = "https://github.com/ThosRTanner/sessionmanager/blob/master/Changes.md";
+const FIRST_URL_DEV = "https://github.com/ThosRTanner/sessionmanager/blob/master/Changes.md";
 const DO_NOT_IMPORT_EXPORT = ["_autosave_values","_backup_autosave_values"];
 
 // temporary variables for when doing import/export
@@ -40,7 +43,7 @@ this.PreferenceManager = {
 	getAllPrefs: function() {
 		return Private.getAllPrefs();
 	},
-	
+
 	has: function(aName, aUseRootBranch) {
 		return Private.has(aName, aUseRootBranch);
 	},
@@ -48,28 +51,28 @@ this.PreferenceManager = {
 	get: function(aName, aDefault, aUseRootBranch) {
 		return Private.get(aName, aDefault, aUseRootBranch);
 	},
-	
+
 	set: function(aName, aValue, aUseRootBranch) {
 		return Private.set(aName, aValue, aUseRootBranch);
 	},
-	
+
 	delete: function(aName, aUseRootBranch) {
 		return Private.delete(aName, aUseRootBranch);
 	},
-	
+
 	resetWarningPrompts: function()
 	{
 		return Private.resetWarningPrompts();
 	},
-	
+
 	import: function() {
 		return Private.import();
 	},
-	
+
 	export: function() {
 		return Private.export();
 	},
-	
+
 	observe: function(aPrefName, aObserver, aOwnsWeak, aUseRootBranch) {
 		return Private.observe(aPrefName, aObserver, aOwnsWeak, aUseRootBranch);
 	},
@@ -77,11 +80,11 @@ this.PreferenceManager = {
 	unobserve: function(aPrefName, aObserver, aUseRootBranch) {
 		return Private.unobserve(aPrefName, aObserver, aUseRootBranch);
 	},
-  
+
 	getHomePageGroup: function() {
 		return Private.getHomePageGroup();
 	},
-	
+
 	getInstantApply: function() {
 		return Private.getInstantApply();
 	}
@@ -91,7 +94,7 @@ this.PreferenceManager = {
 // Don't allow changing
 Object.freeze(PreferenceManager);
 
-//	
+//
 // private functions
 //
 let Private = {
@@ -104,7 +107,7 @@ let Private = {
 	getHomePageGroup: function() {
 		var homePage = Services.prefs.getComplexValue("browser.startup.homepage",Ci.nsISupportsString);
 		var children = Services.prefs.getChildList("browser.startup.homepage.");
-		
+
 		for (let i=0; i < children.length; i++) {
 			try {
 				if  (!isNaN(parseInt(children[i].substring(children[i].lastIndexOf(".") + 1))))
@@ -113,7 +116,7 @@ let Private = {
 		}
 		return homePage;
 	},
-	
+
 	getInstantApply: function() {
 		var result = false;
 		try {
@@ -131,16 +134,16 @@ let Private = {
 		return prefs;
 	},
 
-	has: function(aName, aUseRootBranch) 
+	has: function(aName, aUseRootBranch)
 	{
 		let pb = (aUseRootBranch)?Services.prefs:this.smPreferenceBranch;
 		return pb.prefHasUserValue(aName);
 	},
 
-	get: function(aName, aDefault, aUseRootBranch) 
+	get: function(aName, aDefault, aUseRootBranch)
 	{
 		let value = (typeof aDefault == "undefined") ? "" : aDefault;
-	
+
 		try
 		{
 			let pb = (aUseRootBranch)?Services.prefs:this.smPreferenceBranch;
@@ -162,10 +165,10 @@ let Private = {
 		return value;
 	},
 
-	set: function(aName, aValue, aUseRootBranch) 
+	set: function(aName, aValue, aUseRootBranch)
 	{
 		let forceSave = this.checkForForceSave(aName, aValue, aUseRootBranch);
-		
+
 		try {
 			let pb = (aUseRootBranch)?Services.prefs:this.smPreferenceBranch;
 			switch (typeof aValue)
@@ -184,17 +187,17 @@ let Private = {
 					break;
 			}
 			if (forceSave) Services.obs.notifyObservers(null,"sessionmanager-preference-save",null);
-		} 
+		}
 		catch(ex) { logError(ex); }
 	},
 
-	delete: function(aName, aUseRootBranch) 
+	delete: function(aName, aUseRootBranch)
 	{
 		let pb = (aUseRootBranch)?Services.prefs:this.smPreferenceBranch;
-		if (pb.prefHasUserValue(aName)) 
+		if (pb.prefHasUserValue(aName))
 			pb.clearUserPref(aName);
 	},
-	
+
 	// Delete warning prompt preferences which have the format of "no_....._prompt"
 	resetWarningPrompts: function()
 	{
@@ -208,33 +211,33 @@ let Private = {
 			}, this);
 		}
 	},
-	
+
 	import: function()
 	{
 		let file = this.chooseFile(false);
 		if (!file) return;
-	
-		// save current version 
+
+		// save current version
 		currentVersion = this.get("version", "");
 		importFileName = file.leafName;
-	
+
 		// Read preference file
 		SessionIo.asyncReadFile(file, function(aInputStream, aStatusCode) {this.import_callback(aInputStream, aStatusCode)}.bind(this));
 	},
-	
+
 	import_callback: function(aInputStream, aStatusCode) {
-		let prefsString, reason;  
+		let prefsString, reason;
 		let success = false;
-		
+
 		if (Components.isSuccessCode(aStatusCode) && aInputStream.available()) {
 			// Read the session file from the stream and process and return it to the callback function
 			try {
 				prefsString = NetUtil.readInputStreamToString(aInputStream, aInputStream.available(), { charset : "UTF-8" } );
 				success = true;
-			}	
-			catch(ex) { 
+			}
+			catch(ex) {
 				reason = ex;
-				logError(ex); 
+				logError(ex);
 			}
 		}
 		else {
@@ -244,7 +247,7 @@ let Private = {
 
 		importFileName = null;
 		let window = Services.wm.getMostRecentWindow("SessionManager:Options");
-		
+
 		if (success) {
 			let prefs = JSON.parse(prefsString);
 			if (prefs.length) {
@@ -254,32 +257,32 @@ let Private = {
 						this.set(prefs[i].name, prefs[i].value);
 				}
 			}
-		
+
 			this.updatePreferences2(currentVersion, this.get("version"), true);
 			// update options window for preferences that don't automatically update window
 			window.updateSpecialPreferences();
 			window.disableApply();
 		}
-		
+
 		currentVersion = null;
 		// put up alert
 		let bundle = Services.strings.createBundle("chrome://sessionmanager/locale/sessionmanager.properties");
 		let text = success ? bundle.GetStringFromName("import_successful") :  (bundle.GetStringFromName("import_failed") + " - " + reason);
 		Services.prompt.alert(window, bundle.GetStringFromName("import_prompt"), text);
 	},
-	
+
 	export: function()
 	{
 		let file = this.chooseFile(true);
 		if (!file) return;
 
 		exportFileName = file.leafName;
-		
+
 		let reason;
 		try {
 			let prefs = this.getAllPrefs();
 			if (prefs.length) {
-			
+
 				let myprefs = [];
 				for (let i=0; i<prefs.length; i++) {
 					// If not in do not export list, export it
@@ -287,35 +290,35 @@ let Private = {
 						myprefs.push({ name: prefs[i].name, value: prefs[i].value });
 				}
 				let prefsString = JSON.stringify(myprefs);
-				
+
 				SessionIo.writeFile(file, prefsString, this.export_callback);
 				return;
 			}
 		}
-		catch(ex) { 
+		catch(ex) {
 			reason = ex;
-			logError(ex); 
+			logError(ex);
 		}
-		
+
 		exportFileName = null;
 		let window = Services.wm.getMostRecentWindow("SessionManager:Options");
 		let bundle = Services.strings.createBundle("chrome://sessionmanager/locale/sessionmanager.properties");
 		let text = bundle.GetStringFromName("export_failed") + " - " + reason;
 		Services.prompt.alert(window, bundle.GetStringFromName("export_prompt"), text);
 	},
-	
+
 	export_callback: function(aStatusCode) {
-		let reason;  
+		let reason;
 		let success = false;
-		
+
 		if (Components.isSuccessCode(aStatusCode)) {
 			success = true;
-		}	
+		}
 		else {
 			reason = new Components.Exception(exportFileName, aStatusCode, Components.stack.caller);
 			logError(reason);
 		}
-		
+
 		exportFileName = null;
 		let window = Services.wm.getMostRecentWindow("SessionManager:Options");
 		let bundle = Services.strings.createBundle("chrome://sessionmanager/locale/sessionmanager.properties");
@@ -336,7 +339,7 @@ let Private = {
 		}
 		catch(ex) { logError(ex); }
 	},
-	
+
 	//
 	// Private Functions
 	//
@@ -347,17 +350,17 @@ let Private = {
 		this.readDefaultPrefs();
 
 		log("PreferenceManager initialize start", "TRACE");
-		
+
 		this.smPreferenceBranch = Services.prefs.getBranch(PREFERENCE_ROOT).QueryInterface(Ci.nsIPrefBranch2);
-		
+
 		// Move preference root to correct location if it's wrong
 		this.movePreferenceRoot();
 
 		// Convert sessions to Firefox 3.5+ format if never converted them
 		SharedData.convertFF3Sessions = this.get("lastRanFF3", true);
 		this.set("lastRanFF3", false);
-	
-		// Make sure resume_session is not null.  This could happen in 0.6.2.  It should no longer occur, but 
+
+		// Make sure resume_session is not null.  This could happen in 0.6.2.  It should no longer occur, but
 		// better safe than sorry.
 		if (!this.get("resume_session")) {
 			this.set("resume_session", Constants.BACKUP_SESSION_FILENAME);
@@ -367,7 +370,7 @@ let Private = {
 
 		// This updates preference in case of an update.
 		this.updatePreferences();
-		
+
 		// Put up saving warning if private browsing mode permanently enabled.
 		if (Utils.isAutoStartPrivateBrowserMode()) {
 			if (!this.get("no_private_browsing_prompt", false)) {
@@ -380,7 +383,7 @@ let Private = {
 			}
 		}
 	},
-	
+
 	readDefaultPrefs: function() {
 		// Load default preferences and set up properties for them
 		let defaultBranch = Services.prefs.getDefaultBranch(PREFERENCE_ROOT);
@@ -394,7 +397,7 @@ let Private = {
 					return;
 				}
 				pref = pref.substr(PREFERENCE_ROOT.length);
-	
+
 				try {
 					switch (typeof value) {
 						case "boolean":
@@ -422,12 +425,12 @@ let Private = {
 		};
 		Services.scriptloader.loadSubScript(AddonInfo.addonRoot + "defaults/prefs.js", scope);
 	},
-	
+
 	// Certain preferences should be force saved in case of a crash
 	checkForForceSave: function(aName, aValue, aUseRootBranch)
 	{
 		let names = [ "_autosave_values" ];
-		
+
 		for (let i=0; i<names.length; i++) {
 			if (aName == names[i]) {
 				let currentValue = this.get(aName, null, aUseRootBranch);
@@ -441,20 +444,25 @@ let Private = {
 	movePreferenceRoot: function()
 	{
 		// If old values exist
-		if (this.has(OLD_PREFERENCE_ROOT + "version"), true) {
-			let prefBranch = Services.prefs.getBranch(OLD_PREFERENCE_ROOT);
-			let count = {};
-			let children = prefBranch.getChildList("",count);
-			for (let i=0; i < children.length; i++) {
-				try {
-					if (this.has(OLD_PREFERENCE_ROOT + children[i], true)) {
-						this.set(PREFERENCE_ROOT + children[i], this.get(OLD_PREFERENCE_ROOT + children[i],null,true));
-						prefBranch.clearUserPref(children[i]);
-					}
-				} catch(ex) {
-					logError(ex);
-				}
-			}
+    const roots = [ OLD_PREFERENCE_ROOT ]; //, PREV_PREFERENCE_ROOT ];
+    for (const root of roots)
+    {
+      if (this.has(root + "version", true)) {
+        let prefBranch = Services.prefs.getBranch(root);
+        let count = {};
+        let children = prefBranch.getChildList("",count);
+        for (let i=0; i < children.length; i++) {
+          try {
+            if (this.has(root + children[i], true)) {
+              this.set(PREFERENCE_ROOT + children[i],
+                       this.get(root + children[i], null, true));
+              prefBranch.clearUserPref(children[i]);
+            }
+          } catch(ex) {
+            logError(ex);
+          }
+        }
+      }
 		}
 	},
 
@@ -467,7 +475,7 @@ let Private = {
 		let nsIFilePicker = Ci.nsIFilePicker;
 		let filepicker = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 		let window = Services.wm.getMostRecentWindow("SessionManager:Options");
-		
+
 		filepicker.init(window, bundle.GetStringFromName((aSave ? "export" : "import") + "_prompt"), (aSave ? nsIFilePicker.modeSave : nsIFilePicker.modeOpen));
 		filepicker.appendFilter(bundle.GetStringFromName("settings_file_extension_description"), "*." + bundle.GetStringFromName("session_manager_settings_file_extension"));
 		filepicker.defaultString = bundle.GetStringFromName("default_settings_file_name");
@@ -479,20 +487,22 @@ let Private = {
 		}
 		else return null;
 	},
-	
+
 	updatePreferences: function() {
 		let oldVersion = this.get("version", "");
 		let newVersion = AddonInfo.version;
-		
+
 		if (this.updatePreferences2(oldVersion, newVersion)) {
 			// Set flag to display message on update if preference set to true
 			if (this.get("update_message", true)) {
-				// If development version, go to development change page
-				let dev_version = (/pre\d*/.test(newVersion));
-				SharedData._displayUpdateMessage = (dev_version ? FIRST_URL_DEV : FIRST_URL) + "?oldversion=" + oldVersion + "&newversion=" + newVersion;
+				let dev_version = /pre/.test(newVersion);
+				SharedData._displayUpdateMessage =
+          "https://github.com/ThosRTanner/sessionmanager/blob/" +
+          (dev_version ? "master" : newVersion) +
+          "/Changes.md";
 			}
 		}
-		
+
 		log("PreferenceManager initialize end", "TRACE");
 	},
 
@@ -503,16 +513,16 @@ let Private = {
 		{
 			// If this is an actual update of Session Manager, check if we need to update session data files
 			if (!aNotTrueUpdate) {
-		
+
 				// Fix the closed window data if it's encrypted
 				if ((Services.vc.compare(oldVersion, "0.6.4.2") < 0) && !this.get("use_SS_closed_window_list")) {
 					// if encryption enabled
 					if (this.get("encrypt_sessions")) {
 						let windows = SessionIo.getClosedWindows_SM();
-						
+
 						// if any closed windows
 						if (windows.length) {
-							// force a master password prompt so we don't waste time if user cancels it, if user cancels three times 
+							// force a master password prompt so we don't waste time if user cancels it, if user cancels three times
 							// simply delete the stored closed windows
 							let count = 4;
 							while (--count && !PasswordManager.enterMasterPassword());
@@ -544,9 +554,9 @@ let Private = {
 						}
 					}
 				}
-				
+
 				// Cached data changed (now cache history) so re-create cache file if enabled
-				if ((Services.vc.compare(oldVersion, "0.7.7pre20110826") <= 0) && (this.get("use_SQLite_cache"))) 
+				if ((Services.vc.compare(oldVersion, "0.7.7pre20110826") <= 0) && (this.get("use_SQLite_cache")))
 					SQLManager.rebuildCache();
 
 				// Clean out screenX and screenY persist values from localstore.rdf since we don't persist anymore.
@@ -564,7 +574,7 @@ let Private = {
 					}
 					ls.QueryInterface(Ci.nsIRDFRemoteDataSource).Flush();
 				}
-							
+
 				// Add backup sessions to backup group
 				if (Services.vc.compare(oldVersion, "0.6.2.8") < 0) {
 					let sessions = SessionIo.getSessions();
@@ -574,13 +584,13 @@ let Private = {
 						}
 					}, this);
 				}
-				
+
 				// Version 0.6.9 had a bug in it which would corrupt old session format files so fix them.
 				if (Services.vc.compare(oldVersion, "0.6.9") == 0) {
 					SharedData._fix_newline = true;
 					SharedData.convertFF3Sessions = true;
 				}
-				
+
 				// Format changed for _autosave_values and _backup_autosave_values preferences
 				// Since these are temporary preferences, we don't import/export them so don't bother checking unless upgrading
 				if (Services.vc.compare(oldVersion, "0.9.8") <= 0) {
@@ -602,7 +612,7 @@ let Private = {
 
 			// This preference is no longer a boolean so delete it when updating to prevent exceptions.
 			if (Services.vc.compare(oldVersion, "0.7.7pre20110824") <= 0) this.delete("leave_prompt_window_open");
-			
+
 			// Newer versions don't automatically append "sessions" to user chosen directory so
 			// convert existing preference to point to that folder.
 			if (Services.vc.compare(oldVersion, "0.7") < 0) {
@@ -611,7 +621,7 @@ let Private = {
 					this.set("sessions_dir", dir.path)
 				}
 			}
-			
+
 			if (!aNotTrueUpdate)
 				this.set("version", newVersion);
 		}

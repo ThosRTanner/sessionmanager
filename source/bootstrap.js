@@ -6,8 +6,6 @@
 
 const {classes: Cc, interfaces: Ci, utils: Cu} = Components;
 
-const LOG_ENABLE_PREFERENCE_NAME = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}.logging";
-
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 
@@ -25,6 +23,8 @@ XPCOMUtils.defineLazyModuleGetter(this, "logError", "chrome://sessionmanager/con
 var disabled = true;
 var id, upgradeTimer;
 const PREFBRANCH = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}.";
+const LOG_ENABLE_PREFERENCE_NAME = PREFBRANCH + "logging";
+
 const Private_Tabs_Addon = "privateTab@infocatcher";
 
 /* Includes a javascript file with loadSubScript
@@ -46,7 +46,7 @@ const Private_Tabs_Addon = "privateTab@infocatcher";
 })(this);
 
 /* Imports a commonjs style javascript file with loadSubScrpt
- * 
+ *
  * @param src (String)
  * The url of a javascript file.
  */
@@ -112,11 +112,11 @@ var AddonListener = {
 				break;
 		}
 	},
-	
+
 	onEnabled: function(addon) {
 		this.setAddOnState(addon.id, true);
 	},
-	
+
 	onDisabled: function(addon) {
 		this.setAddOnState(addon.id, false);
 	}
@@ -131,7 +131,7 @@ var widgetListener = {
 
 
 function watchForUpgrade(promptWindow) {
-	
+
 	let smInstall;
 
 	// Observer to listen for updating Session Manager and set flag and prevent update
@@ -144,37 +144,37 @@ function watchForUpgrade(promptWindow) {
 			}
 		}
 	};
-	
+
 	// wait for prompt window to unload
 	unload(function() {
 		// stop listening for addon installs
 		AddonManager.removeInstallListener(installListener);
-	
+
 		// cancel timer if already started
 		if (upgradeTimer) {
 			upgradeTimer.cancel();
 			upgradeTimer = null;
 		}
-	
+
 		// If tried to upgrade while prompt window was open, kick off upgrade timer
 		if (smInstall) {
 			log("Session Manager will update in 30 seconds.", "TRACE");
 			// set 30 second timer
 			upgradeTimer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
 			upgradeTimer.initWithCallback({
-				notify:function (aTimer) { 
+				notify:function (aTimer) {
 					log("Session Manager updating now.", "TRACE");
-					smInstall.install(); 
+					smInstall.install();
 					upgradeTimer = null;
 				}
 			}, 30000, Ci.nsITimer.TYPE_ONE_SHOT);
 		}
 	}, promptWindow);
-	
+
 	AddonManager.addInstallListener(installListener)
 }
 
-function unloadModules() { 
+function unloadModules() {
 	Cu.unload("chrome://sessionmanager/content/modules/encryption_manager.jsm");
 	Cu.unload("chrome://sessionmanager/content/modules/logger.jsm");
 	Cu.unload("chrome://sessionmanager/content/modules/logger_backend.jsm");
@@ -197,7 +197,7 @@ function uninstall(params, reason) {
 	if (reason == ADDON_UNINSTALL) {
 		// remove preferences when uninstalling
 		Services.prefs.deleteBranch(PREFBRANCH);
-		
+
 		// Remove any leftover files
 		let scope = {};
 		Cu.import("resource://gre/modules/FileUtils.jsm",scope);
@@ -211,7 +211,7 @@ function uninstall(params, reason) {
 			}
 			catch(ex) { Components.utils.reportError(ex); }
 		}
-		
+
 		// TODO: Add prompt asking to delete session files
 	}
 }
@@ -219,7 +219,7 @@ function uninstall(params, reason) {
 function startup(params, reason)
 {
 	// If logging is enabled, wrap everything in a try/catch to find errors
-	if (Services.prefs.prefHasUserValue(LOG_ENABLE_PREFERENCE_NAME) && 
+	if (Services.prefs.prefHasUserValue(LOG_ENABLE_PREFERENCE_NAME) &&
 	    Services.prefs.getBoolPref(LOG_ENABLE_PREFERENCE_NAME)) {
 		try {
 			startup2(params, reason);
@@ -236,13 +236,13 @@ function startup2(params, reason)
 {
 	disabled = false;
 	id = params.id;
-	
+
 	// Listen for addons being enabled/disabled
 	AddonManager.addAddonListener(AddonListener);
-	
+
 	// Watch for prompt window to prevent updates if Session Prompt window is open
 	watchWindows(watchForUpgrade, "SessionManager:SessionPrompt");
-	
+
 	// If installing set default button position to the nav-bar before the location
 	if (reason == ADDON_INSTALL) {
 		setDefaultPosition("sessionmanager-toolbar", "nav-bar", "home-button");
@@ -254,26 +254,26 @@ function startup2(params, reason)
 	Cu.import("chrome://sessionmanager/content/modules/shared_data/data.jsm", scope);
 	scope.SharedData._running = (reason != APP_STARTUP);
 	scope.SharedData.justStartedUpDowngraded = (reason == APP_STARTUP) || (reason == ADDON_UPGRADE) || (reason == ADDON_DOWNGRADE);
-	
+
 	// Store Addon info
 	Cu.import("chrome://sessionmanager/content/modules/shared_data/addonInfo.jsm", scope);
 	scope.AddonInfo.addonData = [params, PREFBRANCH];
-	
+
 	// Add observer for unload notifications
 	Services.obs.addObserver(observer, "session-manager-unload", true);
 
 	// Read in default prefs and initialize Preferences.
 	Cu.import("chrome://sessionmanager/content/modules/preference_manager.jsm", scope);
-	
+
 	initializeHelper(reason == APP_STARTUP);
-	
+
 	let stylesheets = ["chrome://sessionmanager/skin/sessionmanager.css", "chrome://sessionmanager/skin/tabWin.css"];
 	if (Services.appinfo.name == "SeaMonkey")
 		stylesheets.push("chrome://sessionmanager/skin/sm_sessionmanager.css", "chrome://sessionmanager/skin/tabWinSM.css");
-	
+
 	// Add unload functions
-	unload(function() { 
-		if (australis) 
+	unload(function() {
+		if (australis)
 			CustomizableUI.removeListener(widgetListener);
 		// If options window open, close it
 		let win = Services.wm.getMostRecentWindow("SessionManager:Options");
@@ -283,21 +283,21 @@ function startup2(params, reason)
 		win = Services.wm.getMostRecentWindow("SessionManager:SessionPrompt");
 		if (win)
 			win.close();
-		Services.obs.removeObserver(observer, "session-manager-unload"); 
+		Services.obs.removeObserver(observer, "session-manager-unload");
 		// Unload stylesheets
 		for (let i in stylesheets) {
 			let sss = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
 			let uri = Services.io.newURI(stylesheets[i], null, null);
 			if (sss.sheetRegistered(uri, sss.USER_SHEET))
-				sss.unregisterSheet(uri, sss.USER_SHEET);	
+				sss.unregisterSheet(uri, sss.USER_SHEET);
 		}
 		Services.strings.flushBundles();
 	});
 
 	// Australis uses widget listener
-	if (australis) 
+	if (australis)
 		CustomizableUI.addListener(widgetListener);
-	
+
 	// Load Style Sheets
 	for (let i in stylesheets) {
 		let sss = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
@@ -307,23 +307,23 @@ function startup2(params, reason)
 
 	// Read in window overlay
 	loadOverlay();
-	
+
 	// Watch for existing and newly opened windows
 	watchWindows(applyOverlay, "navigator:browser");
-	
+
 	// Overlay hidden window on Macs - not avaialable on startup so need to add watcher
 	// Services.appShell doesn't exist in older versions of Firefox/SeaMonkey so use nsIAppShellService
 	let appShell = Services.appShell || Cc["@mozilla.org/appshell/appShellService;1"].getService(Ci.nsIAppShellService);
 	if (appShell.applicationProvidedHiddenWindow) {
 		watchHiddenWindow(applyOverlay);
 	}
-	
+
 	// Watch for options window
 	watchWindows(applyOptionsOverlay, (Services.appinfo.name == "SeaMonkey") ? "mozilla:preferences" : "Browser:Preferences");
-	
+
 	// Watch for santize window
 	watchWindows(applySanitizeOverlay, "", "SanitizeDialog");
-	
+
 	// Listen for command line parameters
 	require("comandlineHandler");
 }
@@ -337,10 +337,10 @@ function shutdown(params, reason)
 		upgradeTimer.cancel();
 		upgradeTimer = null;
 	}
-	
+
 	// Stop listening for addons being enabled/disabled
 	AddonManager.removeAddonListener(AddonListener)
-	
+
 	// Don't bother unloading if shutting down
 	if (reason == APP_SHUTDOWN)
 		return;
@@ -350,14 +350,14 @@ function shutdown(params, reason)
 	scope.SharedData.upgradingOrDowngrading = (reason == ADDON_UPGRADE) || (reason == ADDON_DOWNGRADE);
 
 	unload();
-	
+
 	// If not upgrading/downgrading make sure autosave session preference is cleared
 	if ((reason != ADDON_UPGRADE) && (reason != ADDON_DOWNGRADE)) {
 		let scope = {};
 		Cu.import("chrome://sessionmanager/content/modules/preference_manager.jsm", scope);
 		scope.PreferenceManager.delete("_autosave_values");
 	}
-	
+
 	// Unload modules after all other unloaders have run
 	unloadModules();
 }

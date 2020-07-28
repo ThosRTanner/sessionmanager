@@ -6,13 +6,15 @@ this.EXPORTED_SYMBOLS = ["logger"];
 // Configuration Constant Settings - addon specific
 const ADDON_NAME = "Session Manager";
 const FILE_NAME = "sessionmanager_log.txt";
-const LOG_ENABLE_PREFERENCE_NAME = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}.logging";
-const BACKUP_PREFERENCE_NAME = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}.backup_error_console_settings";
-const LOG_CONSOLE_PREFERENCE_NAME = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}.logging_to_console";
-const LOG_LEVEL_PREFERENCE_NAME = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}.logging_level";
+const PREFERENCE_ROOT = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}";
+
+const LOG_ENABLE_PREFERENCE_NAME = PREFERENCE_ROOT + ".logging";
+const BACKUP_PREFERENCE_NAME = PREFERENCE_ROOT + ".backup_error_console_settings";
+const LOG_CONSOLE_PREFERENCE_NAME = PREFERENCE_ROOT + ".logging_to_console";
+const LOG_LEVEL_PREFERENCE_NAME = PREFERENCE_ROOT + ".logging_level";
+
 const BUNDLE_URI = "chrome://sessionmanager/locale/sessionmanager.properties";
 const ERROR_STRING_NAME = "file_not_found";
-const PREFERENCE_ROOT = "extensions.{1280606b-2510-4fe0-97ef-9b5a22eafe30}";
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;
@@ -30,9 +32,9 @@ XPCOMUtils.defineLazyModuleGetter(this, "FileUtils", "resource://gre/modules/Fil
 // EOL Character - dependent on operating system.
 XPCOMUtils.defineLazyGetter(this, "_EOL", function() {
 		return /win|os[\/_]?2/i.test(Services.appinfo.OS)?"\r\n":"\n";
-}); 
+});
 
-// logging level 
+// logging level
 const logging_level = { STATE: 1, TRACE: 2, DATA: 4, INFO: 8, EXTRA: 16, ERROR: 32 };
 
 this.logger = {
@@ -42,19 +44,19 @@ this.logger = {
 	logError: function(e) {
 		logError(e);
 	},
-	
+
 	log: function(aMessage, level) {
 		log(aMessage, level);
 	},
-	
+
 	deleteLogFile: function(aForce) {
 		deleteLogFile(aForce);
 	},
-	
+
 	openLogFile: function() {
 		openLogFile();
 	},
-	
+
 	shutdown: function() {
 		shutdown();
 	}
@@ -107,14 +109,14 @@ function logError(e) {
 		log(e, "ERROR");
 		return;
 	}
-	
+
 	// Log Addons if haven't already
 	if (!_need_log_Addons) logAddons();
-		
+
 	let location = e.stack || getCallStack(e.location) || (e.fileName + ":" + e.lineNumber);
-	try { 
+	try {
 		let msg = (new Date).toGMTString() + ": EXCEPTION - {" + e.message + "} \n" + location + "\n"
-		if (!_done_log_Addons) 
+		if (!_done_log_Addons)
 			startup_buffer += msg;
 		else {
 			Services.console.logStringMessage(ADDON_NAME + ": " + msg);
@@ -145,12 +147,12 @@ function log(aMessage, level) {
 			}
 		}
 	}
-	catch (ex) { 
-		report(ex); 
+	catch (ex) {
+		report(ex);
 	}
 }
 
-// 
+//
 // Delete Log File if it exists and not logging or it's too large (> 10 MB)
 //
 function deleteLogFile(aForce) {
@@ -158,19 +160,19 @@ function deleteLogFile(aForce) {
 	if (!_logFile) {
 		if (!setLogFile()) return false;
 	}
-	
-	try { 
+
+	try {
 		if (_logFile.exists() && (aForce || _logFile.fileSize > 10485760)) {
 			_logFile.remove(false);
 			return true;
 		}
 	}
-	catch (ex) { 
-		// if file is locked and writing to log file, flag it for deletion 
+	catch (ex) {
+		// if file is locked and writing to log file, flag it for deletion
 		if ((ex.result == Components.results.NS_ERROR_FILE_IS_LOCKED) && write_in_progress)
 			_delete_log_file = true;
-		else 
-			report(ex); 
+		else
+			report(ex);
 	}
 	return true;
 }
@@ -184,7 +186,7 @@ function openLogFile() {
 	if (!_logFile || !_logFile.exists() || !(_logFile instanceof Ci.nsILocalFile)) {  // In Gecko 14 and up check for nsIFile
 		try {
 			let bundle = Services.strings.createBundle(BUNDLE_URI);
-			let errorString = bundle.GetStringFromName(ERROR_STRING_NAME);	
+			let errorString = bundle.GetStringFromName(ERROR_STRING_NAME);
 			Services.prompt.alert(null, ADDON_NAME, errorString);
 		}
 		catch (ex) {
@@ -192,7 +194,7 @@ function openLogFile() {
 		}
 		return;
 	}
-		
+
 	try {
 		// "Double click" the log file to open it
 		_logFile.launch();
@@ -202,7 +204,7 @@ function openLogFile() {
 			let mimeInfoService = Cc["@mozilla.org/uriloader/external-helper-app-service;1"].getService(Ci.nsIMIMEService);
 			let mimeInfo = mimeInfoService.getFromTypeAndExtension(mimeInfoService.getTypeFromFile(_logFile), "txt");
 			mimeInfo.preferredAction = mimeInfo.useSystemDefault;
-			mimeInfo.launchWithFile(_logFile);      
+			mimeInfo.launchWithFile(_logFile);
 		}
 		catch (ex)
 		{
@@ -210,7 +212,7 @@ function openLogFile() {
 		}
 	}
 }
-	
+
 
 //
 // Private Functions
@@ -226,7 +228,7 @@ function setLogFile() {
 			// Get Profile folder and append log file name
 			_logFile = FileUtils.getFile("ProfD", [FILE_NAME]);
 		}
-		catch (ex) { 
+		catch (ex) {
 			_logFile = null;
 			return false;
 		}
@@ -236,13 +238,13 @@ function setLogFile() {
 
 //
 // Write to Log File
-// 
+//
 function write_log(aMessage, aForce) {
 	// If log file not stored, store it.  This will throw an exception if the profile hasn't been initialized so just exit in that case.
 	if (!_logFile) {
 		if (!setLogFile()) return;
 	}
-	
+
 	let aData = "";
 	if (!_printedHeader) {
 		aData += "*************************************************\n";
@@ -251,18 +253,18 @@ function write_log(aMessage, aForce) {
 		_printedHeader = true;
 	}
 	aData += aMessage;
-	
+
 	// This is used to buffer logging, otherwise log file gets corrupted when doing multiple asynchronous writes at the same time
 	if (write_in_progress && !aForce) {
 		disk_buffer += aData;
 	}
 	else {
 		aData = aData.replace(/\n/g, _EOL);  // Change EOL for OS
-	
+
 		try {
 			let converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Ci.nsIScriptableUnicodeConverter);
 			converter.charset = "UTF-8";
-			
+
 			// Asynchronously copy the data to the file.
 			let istream = converter.convertToInputStream(aData);
 			let ostream = FileUtils.openFileOutputStream(_logFile, FileUtils.MODE_WRONLY | FileUtils.MODE_CREATE | FileUtils.MODE_APPEND);
@@ -272,18 +274,18 @@ function write_log(aMessage, aForce) {
 			// message to make sure we aren't logging when the logging preference change which would add overhead so just let it throw.
 			NetUtil.asyncCopy(istream, ostream, write_log_done);
 		}
-		catch (ex) { 
-			report(ex); 
+		catch (ex) {
+			report(ex);
 		}
 	}
 }
-	
+
 //
 // Callback for when asynchronous write is complete - kick off next write if anything in buffer
 //
 function write_log_done(aResults) {
 	// Don't continue if compomnent isn't active (meaning it's been unloaded)
-	if (!_component_active) 
+	if (!_component_active)
 		return;
 
 	// Log any errors.  Stop logging after 3 errors in a row
@@ -297,7 +299,7 @@ function write_log_done(aResults) {
 	}
 	else {
 		_file_error_count = 0;
-		
+
 		// Tried to delete log file, but it was locked because of write so delete it now and clear log buffer
 		if (_delete_log_file) {
 			_delete_log_file = false;
@@ -306,7 +308,7 @@ function write_log_done(aResults) {
 			disk_buffer = "";
 			write_in_progress = false;
 		}
-	
+
 		// If anything else to write to disk, log it other wise mark writing done
 		if (disk_buffer && disk_buffer.length) {
 			let buffer = disk_buffer;
@@ -316,8 +318,8 @@ function write_log_done(aResults) {
 		else
 			write_in_progress = false;
 	}
-}	
-	
+}
+
 //
 // Log Addons - Also log browser version
 //
@@ -330,7 +332,7 @@ function logAddons(aAddons) {
 		return false;
 	}
 	let addons = aAddons;
-	
+
 	// to get rid of bogus Mozilla validation warning
 	var localString = "unknown";
 	try {
@@ -340,8 +342,8 @@ function logAddons(aAddons) {
 	// Log OS, browser version and locale
 	let logString = "\n\tOS = " + Services.appinfo.OS + "\n\tBrowser = " + Services.appinfo.ID + " - " + Services.appinfo.name + " " + Services.appinfo.version;
 	logString += "\n\tLocale = " + localString;
-	
-	// Log Addons 
+
+	// Log Addons
 	if (addons.length) {
 		logString += "\n\taddons installed and enabled:\n\t   ";
 		let addonString = [];
@@ -352,7 +354,7 @@ function logAddons(aAddons) {
 		}
 		logString += addonString.sort().join("\n\t   ");
 	}
-	
+
 	// Log related Firefox prefences
 	logString += "\n\tBrowser preferences:";
 	logString += "\n\t   browser.privatebrowsing.autostart = " + getPrefValue("browser.privatebrowsing.autostart","");
@@ -365,24 +367,24 @@ function logAddons(aAddons) {
 	logString += "\n\t   browser.warnOnQuit = " + getPrefValue("browser.warnOnQuit","");
 	logString += "\n\t   privacy.clearOnShutdown.history = " + getPrefValue("privacy.clearOnShutdown.history","");
 	logString += "\n\t   privacy.sanitize.sanitizeOnShutdown = " + getPrefValue("privacy.sanitize.sanitizeOnShutdown","");
-  
+
 	// Log preferences
 	let count = {}, prefStrings = [];
 	let children = Services.prefs.getBranch(PREFERENCE_ROOT).QueryInterface(Ci.nsIPrefBranch).getChildList("",count);
 	if (children.length) {
 		logString += "\n\tAdd-on preferences:\n\t   ";
-		for (let i=0; i < children.length; i++) 
+		for (let i=0; i < children.length; i++)
 			prefStrings.push(children[i] + " = " + getPrefValue(PREFERENCE_ROOT + children[i]));
 		logString += prefStrings.sort().join("\n\t   ");
 	}
 
 	// Set this now so don't buffer the logging of logString
 	_done_log_Addons = true;
-	
+
 	// Log start up buffer too (strip off last "\n")
 	logString += "\n" + startup_buffer.substring(0,startup_buffer.length-1);
 	startup_buffer = "";
-	
+
 	// Actually log the logString.  This speeds up logging by a few 1000%.
 	log(logString, "INFO");
 }
@@ -392,28 +394,28 @@ function enableDisableErrorConsole(aEnable) {
 	// see any chrome errors that are generated (which might be caused by Session Manager)
 	if (aEnable) {
 		// Save old values
-		let old_prefs = { "devtools.errorconsole.enabled" : getPrefValue("devtools.errorconsole.enabled", false), 
+		let old_prefs = { "devtools.errorconsole.enabled" : getPrefValue("devtools.errorconsole.enabled", false),
 		                  "javascript.options.showInConsole" : getPrefValue("javascript.options.showInConsole", false) };
-		
+
 		setPrefValue(BACKUP_PREFERENCE_NAME, JSON.stringify(old_prefs));
-			
+
 		setPrefValue("devtools.errorconsole.enabled", true);
 		setPrefValue("javascript.options.showInConsole", true);
 	}
 	else {
 		let old_prefs = JSON.parse(getPrefValue(BACKUP_PREFERENCE_NAME, "{}"));
-	
+
 		// Restore old values if they existed
 		if (!old_prefs["devtools.errorconsole.enabled"])
 			try {
 				Services.prefs.clearUserPref("devtools.errorconsole.enabled");
 			} catch(ex) { }
-			
+
 		if (!old_prefs["javascript.options.showInConsole"])
 			try {
 				Services.prefs.clearUserPref("javascript.options.showInConsole");
 			} catch(ex) { }
-		
+
 		try {
 			Services.prefs.clearUserPref(BACKUP_PREFERENCE_NAME);
 		} catch(ex) { }
@@ -427,13 +429,13 @@ function startup() {
 		// Can't use FUEL/SMILE to listen for preference changes because of bug 488587 so just use an observer
 		Services.prefs.addObserver(LOG_CONSOLE_PREFERENCE_NAME, observer, false);
 		Services.prefs.addObserver(LOG_LEVEL_PREFERENCE_NAME, observer, false);
-		
+
 		_logToConsole = getPrefValue(LOG_CONSOLE_PREFERENCE_NAME);
 		_logLevel = getPrefValue(LOG_LEVEL_PREFERENCE_NAME);
-		
+
 		// Enable error console if logging to console
 		enableDisableErrorConsole(_logToConsole);
-		
+
 		// Do a conditional delete of the log file each time the application starts
 		deleteLogFile();
 	}
@@ -488,7 +490,7 @@ function setPrefValue(aName, aValue) {
 				pb.setIntPref(aName, Math.floor(aValue));
 				break;
 		}
-	} 
+	}
 	catch(ex) { logError(ex); }
 }
 
@@ -498,7 +500,7 @@ var observer = {
 		switch (aTopic)
 		{
 		case "nsPref:changed":
-			switch(aData) 
+			switch(aData)
 			{
 				case LOG_CONSOLE_PREFERENCE_NAME:
 					_logToConsole = getPrefValue(LOG_CONSOLE_PREFERENCE_NAME);
@@ -511,7 +513,7 @@ var observer = {
 			break;
 		}
 	},
-	
+
   QueryInterface: XPCOMUtils.generateQI([
     "nsISupportsWeakReference",
     "nsIObserver"

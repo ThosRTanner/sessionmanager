@@ -72,7 +72,7 @@ var observer = {
       case "encrypt_sessions":
         var encrypting = _("preference.encrypt_sessions").valueFromPreferences;
         _("encrypted_only").hidden = !encrypting;
-        
+
         // When animating preferences the window can get cut off so just refresh the window size here
         if (encrypting && PreferenceManager.get("browser.preferences.animateFadeIn", false, true))
           window.sizeToContent();
@@ -99,7 +99,7 @@ var observer = {
 var onLoad = function(aEvent) {
   this.removeEventListener("load", onLoad, false);
   this.addEventListener("unload", onUnload, false);
-  
+
   // Overlay specific Firefox or SeaMonkey settings
   let overlayURL;
   switch(Services.appinfo.name) {
@@ -110,7 +110,7 @@ var onLoad = function(aEvent) {
       overlayURL = "chrome://sessionmanager/content/options/sm-options.xul";
       break;
   }
-  if (overlayURL) 
+  if (overlayURL)
     document.loadOverlay(overlayURL, observer);
 
   // listen for encryption change start/stop
@@ -125,15 +125,15 @@ var onLoad = function(aEvent) {
   if (PreferenceManager.getInstantApply()) {
     document.documentElement.getButton("extra1").style.visibility = "collapse";
   }
-  
+
   // Restore selected indexes
   _("generalPrefsTab").selectedIndex = _("preference.options_selected_tab").valueFromPreferences;
-  
+
   // Only show preserve app tabs if app tabs exists (Firefox)
   if (Services.appinfo.name != "Firefox") {
     _("preserve_app_tabs").parentNode.style.visibility = "collapse";
   }
-  
+
   // Only show option to restore hidden tabs if default value exists for it
   if (_("browser.sessionstore.restore_hidden_tabs").defaultValue == null) {
     _("restore_hidden_tab").style.visibility = "collapse";
@@ -154,44 +154,44 @@ var onLoad = function(aEvent) {
   if (_("browser.sessionstore.max_serialize_forward").defaultValue == null) {
     _("forward_button_keep_box").style.visibility = "collapse";
   }
-  
+
   // Hide mid-click preference if Tab Mix Plus or Tab Clicking Options is enabled
   var browser = Services.wm.getMostRecentWindow("navigator:browser");
   if ((browser && typeof(browser.tabClicking) != "undefined") || SharedData.tabMixPlusEnabled) {
     _("midClickPref").style.visibility = "collapse";
   }
-  
+
   if (SharedData.tabMixPlusEnabled && PreferenceManager.get("extensions.tabmix.singleWindow", false, true)) {
     _("overwrite").label = Utils._string("overwrite_tabs");
     _("open_as_tabs").style.visibility = "collapse";
   }
-  
+
   // Disable Apply Button by default
   document.documentElement.getButton("extra1").disabled = true;
-  
+
   // Disable encryption button if change in progress
   _("encrypt_sessions").disabled = SharedData.mEncryptionChangeInProgress;
-  
+
   // Disable show icon in menu button if menu hidden
   _("show_icon_in_menu").disabled = _("preference.hide_tools_menu").valueFromPreferences;
-  
+
   // Disabled enabled button based on checkbox
   _("rebuild_cache_button").disabled = !_("preference.use_SQLite_cache").valueFromPreferences || SQLManager.changingEntireSQLCache;
   _("use_sql_cache").disabled = SQLManager.changingEntireSQLCache;
-  
+
   // Disable backup every text field if disabled
   _('backup_every').disabled = !_("preference.backup_every").valueFromPreferences;
 
   updateSpecialPreferences();
-  
+
   // Change styling if in permanent private browsing mode
   updatePrivateBrowsing();
-  
+
   // If animating the height appears to be calculated wrong, so adjust it in that case
   // This also takes care of OS X issues
   if (PreferenceManager.get("browser.preferences.animateFadeIn", false, true))
     adjustContentHeight();
-    
+
   // Hide/show the encrypt only checkbox based on state of encryption checkbox
   // Done after adjusting content height so height is correct
   _("encrypted_only").hidden = !_("encrypt_sessions").checked;
@@ -199,7 +199,7 @@ var onLoad = function(aEvent) {
 
 var onUnload = function(aEvent) {
   this.removeEventListener("unload", onUnload, false);
-  Services.obs.removeObserver(observer, "sessionmanager:encryption-change");    
+  Services.obs.removeObserver(observer, "sessionmanager:encryption-change");
   Services.obs.removeObserver(observer, "sessionmanager:sql-cache-updated");
   Services.obs.removeObserver(observer, "sessionmanager:sql-cache-updating");
   PreferenceManager.unobserve("", observer);
@@ -230,7 +230,7 @@ function updateSpecialPreferences(aUpdateSessionsOnly) {
   }, this);
   // if no restore value, select previous browser session
   resume_session.value = _("preference.resume_session").value || Constants.BACKUP_SESSION_FILENAME;
-  
+
   // current load session no longer there
   if (resume_session.selectedIndex == -1) {
     resume_session.value ="";
@@ -241,21 +241,21 @@ function updateSpecialPreferences(aUpdateSessionsOnly) {
       _("preference.startup").valueFromPreferences = _("startupOption").selectedIndex;
     }
   }
-  
+
   if (!aUpdateSessionsOnly) {
     // Update displayed options based on preference
     checkClosedWindowList(_("preference.use_SS_closed_window_list").valueFromPreferences);
-    
+
     // Change overwrite label to tabs if append to window as tab preference set
     originalOverwriteLabel = _("overwrite").label;
     changeOverwriteLabel(_("preference.append_by_default").valueFromPreferences);
-  
+
     // Initialize and read keys
     initKeys()
-    
+
     // Update Logging Level checkboxes
     readLogLevel();
-    
+
     // Enable/Disable log checkboxes
     updateLogCheckboxes(_("enable_logging").checked);
   }
@@ -278,26 +278,26 @@ function readMaxClosedUndo(aID)
       return value;
       break;
   }
-  
+
   return 0;
 }
 
 function readMaxTabsUndo()
 {
   var value = _("browser.sessionstore.max_tabs_undo").value;
-  
+
   _disable(_("save_closed_tabs"), value == 0);
   _disable(document.getElementsByAttribute("control", "save_closed_tabs")[0], value == 0);
-  
+
   return value;
 }
 
 function promptClearUndoList(aType)
 {
   var max_tabs_undo = _("max_tabs").value;
-  
+
   Utils.clearUndoListPrompt(aType);
-  
+
   _("max_tabs").value = max_tabs_undo;
 };
 
@@ -314,10 +314,10 @@ function writeInterval()
 function readPrivacyLevel()
 {
   var value = _("browser.sessionstore.privacy_level").value;
-  
+
   _disable(_("postdata"), value > 1);
   _disable(document.getElementsByAttribute("control", "postdata")[0], value > 1);
-  
+
   return value;
 }
 
@@ -335,7 +335,7 @@ function setLogLevel() {
   for (var i=0; i < logCB.length; i++) {
     logLevel = logLevel | (logCB[i].checked ? logging_level[logCB[i].getAttribute("_logLevel")] : 0);
   };
-  
+
   _("preference.logging_level").valueFromPreferences = logLevel;
 }
 
@@ -349,10 +349,10 @@ function readLogLevel() {
 
 function updateLogCheckboxes(checked) {
   var boxes = _("loggingCategories").getElementsByTagName("checkbox");
-  for (var i = 0; i < boxes.length; i++) {   
+  for (var i = 0; i < boxes.length; i++) {
     boxes[i].disabled = !checked;
   }
-  
+
   // Use actual preference for buttons since we don't want them enabled for logging is enabled
   var noLogFile = !_("preference.logging").valueFromPreferences && !isLogFile();
   _("open_log_button").disabled = noLogFile;
@@ -361,7 +361,7 @@ function updateLogCheckboxes(checked) {
 
 function doDeleteLogFile() {
   deleteLogFile();
-  
+
   _("open_log_button").disabled = !_("preference.logging").valueFromPreferences;
   _("delete_log_button").disabled = !_("preference.logging").valueFromPreferences;
 }
@@ -381,7 +381,7 @@ function selectSessionDir() {
   if (ret == nsIFilePicker.returnOK) {
     _("preference.sessions_dir").value = filepicker.file.path;
   }
-}    
+}
 
 function defaultSessionDir() {
   _("preference.sessions_dir").value = '';
@@ -397,11 +397,11 @@ function checkEncryption(aState) {
     return !aState;
   }
   _("encrypted_only").hidden = !aState;
-  
+
   // When animating preferences the window can get cut off so just refresh the window size here
   if (aState && PreferenceManager.get("browser.preferences.animateFadeIn", false, true))
     window.sizeToContent();
-  
+
   return aState;
 }
 
@@ -411,7 +411,7 @@ function checkEncryptOnly(aState) {
       aState = false;
     }
   }
-  
+
   return aState;
 }
 
@@ -422,7 +422,7 @@ function changeOverwriteLabel(aChecked) {
 function checkClosedWindowList(aChecked) {
   // Hide the option to not clear the list of closed windows on shutdown if we are using the built in closed windows
   var builtin = aChecked && (_("closed_window_list").style.visibility != "collapse");
-  
+
   _("save_window_list").style.visibility = builtin ? "collapse" : "visible";
   _("max_closed").style.visibility = builtin ? "collapse" : "visible";
   _("max_closed_SS").style.visibility = builtin ? "visible" : "collapse";
@@ -430,12 +430,12 @@ function checkClosedWindowList(aChecked) {
 }
 
 function startupSelect(index) {
-  // hide/display corresponding menus 
+  // hide/display corresponding menus
   _("browserStartupPage").style.visibility = (index != 0)?"collapse":"visible";
   _("preselect").style.visibility = (index != 1)?"collapse":"visible";
   _("resume_session").style.visibility = (index != 2)?"collapse":"visible";
   //if (index == 1) _("resume_session").style.visibility = "hidden";
-  
+
   // If instant apply on, apply immediately
   if (PreferenceManager.getInstantApply()) {
     setStartValue();
@@ -452,10 +452,10 @@ function savePrefs() {
     prefs[i].valueFromPreferences = prefs[i].value;
   }
   saveSpecialPrefs();
-  
+
   // Disable Apply Button
   document.documentElement.getButton("extra1").disabled = true;
-} 
+}
 
 function saveSpecialPrefs() {
   setStartValue();
@@ -472,8 +472,8 @@ function disableApply() {
 }
 
 function goHelp() {
-  var link = "http://sessionmanager.mozdev.org/options.html#";
-  
+  var link = "https://web.archive.org/web/20200609102418/http://sessionmanager.mozdev.org/options.html#";
+
   switch (document.documentElement.currentPane) {
     case (_("mainPrefPane")):
       switch (_("generalPrefsTab").selectedIndex) {
@@ -504,13 +504,13 @@ function goHelp() {
       link = link + "logging";
       break;
   }
-  
+
   openLink(link);
 }
 
 function openLink(url) {
   var top = Services.wm.getMostRecentWindow("navigator:browser");
-           
+
   if (!top) window.open(url, "", "");
   else {
     // Is current tab blank or already on help page.
@@ -522,7 +522,7 @@ function openLink(url) {
     index = url.indexOf("#");
     var baseURL = (index == -1)? url : url.substring(0,index);
     currBlank = (location == "about:blank") || (location == "about:newtab") || (baseLocation == baseURL);
-                   
+
     if (currBlank) tBrowser.loadURI(url);
     else {
       var tab = tBrowser.addTab(url);
@@ -534,11 +534,11 @@ function openLink(url) {
 // Localize strings aren't used when the initial height is used to calculate the size of the context-box
 // and preference window.  The height is calculated correctly once the window is drawn, but the context-box
 // and preference window heights are never updated.
-// To fix this, we need to explicitly set the height style of any element with a localized string that is more 
+// To fix this, we need to explicitly set the height style of any element with a localized string that is more
 // than one line (the descriptions).  This will correct the heights when the panes are selected.
 function adjustContentHeight() {
   var largestAdjustedPaneHeight = 0;
-  var largestUnadjustedPaneHeight = 0; 
+  var largestUnadjustedPaneHeight = 0;
 
   // Calculate the size of a single line (thanks to Nils Maier - maierman@web.de)
   var singleLine = Array.reduce(document.querySelectorAll("prefpane label"), function(c, e) {
@@ -547,8 +547,8 @@ function adjustContentHeight() {
       return Math.min(h, c);
     }
     return c;
-  }, 26); 
-  
+  }, 26);
+
   // For each pane, calculate the real size of the pane (with the multiline descriptions)
   for (var i=0; i < document.documentElement.preferencePanes.length; i++) {
     var pane = document.documentElement.preferencePanes[i];
@@ -562,20 +562,20 @@ function adjustContentHeight() {
         adjustHeight += parseFloat(height) - singleLine;
       }
     }
-    
-    // Calculate new adjusted current pane height.  
+
+    // Calculate new adjusted current pane height.
     adjustHeight = pane.contentHeight + adjustHeight;
-    
+
     // Keep track of the largest adjusted and non-adjusted pane heights
     largestAdjustedPaneHeight = Math.max(largestAdjustedPaneHeight, adjustHeight);
     largestUnadjustedPaneHeight = Math.max(largestUnadjustedPaneHeight, pane.contentHeight);
   }
-  
+
   // When animating the window needs to be resized to take into account the changes to the description height and
   // then shrunk since the opening pane is sized to the largest pane height which is wrong.
   window.sizeToContent();
-  
-  // If encrypted only checkbox is hidden need to tweak the height 
+
+  // If encrypted only checkbox is hidden need to tweak the height
   var encrypted_groupbox_height = parseFloat(window.getComputedStyle(_("encrypted_only").parentNode, null).height) / 2;
   var currentPane = document.documentElement.currentPane;
 /*  Old adjusting that didn't work correctly
@@ -610,14 +610,14 @@ function initKeys() {
     }
     keysInitialized = true;
   }
-  
+
   readKeyConfig();
 }
 
 function clearKey(element) {
   element.previousSibling.value = "";
   element.previousSibling.key = "";
-  
+
   if (PreferenceManager.getInstantApply()) {
     saveKeyConfig();
   }
@@ -627,7 +627,7 @@ function clearKey(element) {
 function readKeyConfig() {
   var keys = Utils.JSON_decode(_("preference.keys").valueFromPreferences, true);
   if (!keys._JSON_decode_failed) {
-  
+
     var keyBoxes = _("key_rows").getElementsByTagName("textbox");
     for (var i=0; i < keyBoxes.length; i++) {
       var keyname = keyBoxes[i].id.replace(/_key/,"");
@@ -639,14 +639,14 @@ function readKeyConfig() {
 
 function saveKeyConfig() {
   var keys = {};
-  
+
   var keyBoxes = _("key_rows").getElementsByTagName("textbox");
   for (var i=0; i < keyBoxes.length; i++) {
     if (keyBoxes[i].key) {
       keys[keyBoxes[i].id.replace(/_key/,"")] = keyBoxes[i].key;
     }
   }
-  
+
   _("preference.keys").valueFromPreferences = Utils.JSON_encode(keys);
 }
 
@@ -682,22 +682,22 @@ function keyPress(element, event) {
   // prevent key commands without a modifier or with only 1 modifier, but not CTRL
   if ((modifiers.length == 0) || ((modifiers.length == 1) && (modifiers[0] != "control"))) {
     // Allow tab, shift-tab, escape, enter/return and F1 (help)
-    if ((event.keyCode != KeyEvent.DOM_VK_TAB) && (event.keyCode != KeyEvent.DOM_VK_ESCAPE) && 
+    if ((event.keyCode != KeyEvent.DOM_VK_TAB) && (event.keyCode != KeyEvent.DOM_VK_ESCAPE) &&
         (event.keyCode != KeyEvent.DOM_VK_RETURN)  && (event.keyCode != KeyEvent.DOM_VK_F1)) {
       event.preventDefault();
-      event.stopPropagation(); 
-      
+      event.stopPropagation();
+
       // clear on delete or backspace
       if ((event.keyCode == KeyEvent.DOM_VK_BACK_SPACE) ||  (event.keyCode == KeyEvent.DOM_VK_DELETE))
         clearKey(element.nextSibling);
     }
-  
+
     return;
   }
 
   event.preventDefault();
-  event.stopPropagation(); 
-    
+  event.stopPropagation();
+
   modifiers = modifiers.join(" ");
 
   var key = null; var keycode = null;
@@ -705,16 +705,16 @@ function keyPress(element, event) {
   else { keycode = keyNames[event.keyCode]; if(!keycode) return;}
 
   var keyvalue = getFormattedKey(modifiers,key,keycode);
-  
+
   // check if duplicate key
   var keyBoxes = _("key_rows").getElementsByTagName("textbox");
   for (var i=0; i < keyBoxes.length; i++) {
     if (keyBoxes[i].value == keyvalue) return;
   }
-  
+
   element.value = getFormattedKey(modifiers,key,keycode);
   element.key = { modifiers: modifiers, key: key, keycode: keycode };
-  
+
   if (PreferenceManager.getInstantApply()) {
     saveKeyConfig();
   }
@@ -726,10 +726,10 @@ function keyPress(element, event) {
 function disableButtons(aEvent) {
   var disable = (aEvent.type == "keydown") && (aEvent.keyCode == KeyEvent.DOM_VK_ALT);
   var enable = (aEvent.type == "keyup");
-  
+
   var buttons = document.documentElement.getElementsByTagName("button");
   var labels = _("key_rows").getElementsByTagName("label");
-  
+
   if (disable && !buttonsDisabled) {
     buttonsDisabled = true;
     for (var i=0; i < buttons.length; i++) buttons[i].disabled = true;
