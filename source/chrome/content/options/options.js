@@ -472,7 +472,7 @@ function disableApply() {
 }
 
 function goHelp() {
-  var link = "https://web.archive.org/web/20200609102418/http://sessionmanager.mozdev.org/options.html#";
+  var link = "https://github.com/ThosRTanner/sessionmanager/wiki/Options";
 
   switch (document.documentElement.currentPane) {
     case (_("mainPrefPane")):
