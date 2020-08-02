@@ -496,7 +496,7 @@ let Private = {
 				let dev_version = /pre/.test(newVersion);
 				SharedData._displayUpdateMessage =
           "https://github.com/ThosRTanner/sessionmanager/blob/" +
-          (dev_version ? "master" : newVersion) +
+          (dev_version ? "master" : "v" + newVersion) +
           "/Changes.md";
 			}
 		}
